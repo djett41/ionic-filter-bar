@@ -1,0 +1,32 @@
+{
+  "name": "ionic-filter-bar",
+  "version": "0.0.1",
+  "description": "A filter directive UI for Ionic apps that animates over the header bar",
+  "author": "Devin Jett <djett41@gmail.com> (https://github.com/djett41)",
+  "main": [
+    "dist/ionic.filter.bar.css",
+    "dist/ionic.filter.bar.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidchang/ngReact.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ionic": "^1.0.0-rc.0",
+    "angular-mocks": "1.3.13"
+  },
+  "keywords": [
+    "mobile",
+    "html5",
+    "ionic",
+    "cordova",
+    "phonegap",
+    "search",
+    "filter",
+    "angularjs",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": false
+}
