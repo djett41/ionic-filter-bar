@@ -108,34 +108,76 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
 
   Load and return a new filter bar.  A new isolated scope will be created for the filter bar and the new filter bar
   will be appended to the body, covering the header bar.
-         
-  @param {object} options The options for the filterBar. Properties:
-         
-  - `[Object]` `items` The array of items to filter.  When the filterBar is cancelled or removed, the original
-              list of items will be passed to the update callback.
-  - `{function=}` `update` Called after the items are filtered.  The new filtered items will be passed
-              to this function which can be used to update the items on your controller's scope.
-  - `{function=}` `cancel` Called after the filterBar is removed.  This can happen when the cancel
-              button is pressed, the backdrop is tapped or swiped, or the back button is pressed.
-  - `{function=}` `done` Called after the filterBar is shown.
-  - `{object=}` `scrollDelegate` An $ionicScrollDelegate instance for controlling the items scrollView.
-              The default value is $ionicScrollDelegate, however you can pass in a more specific scroll delegate,
-              for example $ionicScrollDelegate.$getByHandle('myScrollDelegate').
-  - `{object=}` `filter` The filter object used to filter the items array.  The default value is
-              $filter('filter'), however you can also pass in a custom filter.
-  - `[String]` `filterProperties` A string or string array of object properties that will be used to create a
-              filter expression object for filtering items in the array.  All properties will be matched against the
-              input filter text.  The default value is null, which will create a string filter expression.  The default
-              string expression will be equal to the input filter text and will be matched against all properties
-              including nested properties of the arrays items.
-  - `{boolean=}` `debounce` Used to debounce input so that the filter function gets called at a specified delay,
-              which can help boost performance while filtering.  Default value is false
-              `{number=}` `delay` Number of milliseconds to delay filtering.  Default value is 300ms.  The debounce
-              option must be set to true for this to take effect.
-  - `{string=}` `cancelText` the text for the iOS only 'Cancel' button.  Default value is 'Cancel'.
-  - `{boolean=}` `cancelOnStateChange` Whether to cancel the filterBar when navigating
-              to a new state.  Default value is true.
 
   @returns {function} `hideFilterBar` A function which, when called, hides & cancels the filter bar.
+
+  @param {object} options The options for the filterBar. Properties:
+
+         
+  - `[Object]` `items`
+
+    The array of items to filter.  When the filterBar is cancelled or removed, the original list of items will
+    be passed to the update callback.
+
+
+  - `{function=}` `update`
+
+    Called after the items are filtered.  The new filtered items will be passed to this function which can be used
+    to update the items on your controller's scope.
+
+
+  - `{function=}` `cancel`
+
+    Called after the filterBar is removed.  This can happen when the cancel button is pressed, the backdrop is
+    tapped or swiped, or the back button is pressed.
+
+
+  - `{function=}` `done`
+
+    Called after the filterBar is shown.
+
+
+  - `{object=}` `scrollDelegate`
+
+    An $ionicScrollDelegate instance for controlling the items scrollView.  The default value is $ionicScrollDelegate,
+    however you can pass in a more specific scroll delegate, for example
+    $ionicScrollDelegate.$getByHandle('myScrollDelegate').
+
+
+  - `{object=}` `filter`
+
+    The filter object used to filter the items array.  The default value is $filter('filter'), however you can also
+    pass in a custom filter.
+
+
+  - `[String]` `filterProperties`
+
+    A string or string array of object properties that will be used to create a filter expression object for
+    filtering items in the array.  All properties will be matched against the input filter text.  The default value
+    is null, which will create a string filter expression.  The default string expression will be equal to the input
+    filter text and will be matched against all properties including nested properties of the arrays items.
+
+
+  - `{boolean=}` `debounce`
+
+     Used to debounce input so that the filter function gets called at a specified delay, which can help boost
+     performance while filtering.  Default value is false
+
+  - `{number=}` `delay`
+
+    Number of milliseconds to delay filtering.  Default value is 300ms.  The debounce option must be set to true
+    for this to take effect.
+
+
+  - `{string=}` `cancelText`
+
+    The text for the iOS only 'Cancel' button.  Default value is 'Cancel'.
+
+
+  - `{boolean=}` `cancelOnStateChange`
+
+    Whether to cancel the filterBar when navigating to a new state.  Default value is true.
+
+
 
 
