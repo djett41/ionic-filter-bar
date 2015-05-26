@@ -39,8 +39,8 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
   You can override the default look and feel by injecting `$ionicFilterBarConfigProvider` into your modules config.
   (See demo for example).
 
-  @name $ionicConfigProvider#filterBar.theme
-  @description Which ionic theme or color options to use. Default `stable`.
+  $ionicFilterBarConfigProvider#filterBar.theme -  Which ionic theme or color options to use. Default `stable`.
+
   @param {string} value Ionic color option.
 
   `platform`: Dynamically choose the correct theme depending on the platform the app is running from. If the
@@ -56,29 +56,34 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
   - `assertive`: Style the filterBar with the assertive theme
   - `royal`: Style the filterBar with the royal theme
   - `dark`: Style the filterBar with the dark theme
+
   @returns {string} value
 
 
-  @name $ionicConfigProvider#filterBar.clear
-  @description filterBar Clear button icon used to clear filter input
+  $ionicFilterBarConfigProvider#filterBar.clear - filterBar Clear button icon used to clear filter input
+
   @param {string} value Android defaults to `ion-android-close` and iOS defaults to `ion-ios-close`.
+
   @returns {string}
 
 
-  @name $ionicConfigProvider#filterBar.search
-  @description filterBar Search placeholder icon shown inside input only for iOS
+  $ionicFilterBarConfigProvider#filterBar.search -  filterBar Search placeholder icon shown inside input only
+  for iOS
+
   @param {string} value iOS defaults to `ion-ios-search-strong`.  Android doesn't show placeholder icons
+
   @returns {string}
 
 
-  @name $ionicConfigProvider#filterBar.backdrop
-  @description filterBar backdrop which is shown when filter text is empty
+  $ionicFilterBarConfigProvider#filterBar.backdrop - filterBar backdrop which is shown when filter text is empty
+
   @param {boolean} value Android defaults to `false` and iOS defaults to `true`.
+
   @returns {boolean}
 
 
-  @name $ionicConfigProvider#filterBar.transition
-  @description transition used when filterBar is shown over the header bar
+  $ionicFilterBarConfigProvider#filterBar.transition - transition used when filterBar is shown over the header bar
+
   @param {string} value Android defaults to `horizontal` and iOS defaults to `vertical`.
 
   `platform`: Dynamically choose the correct transition depending on the platform the app is running from.
