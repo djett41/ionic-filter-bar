@@ -39,7 +39,9 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
   You can override the default look and feel by injecting `$ionicFilterBarConfigProvider` into your modules config.
   (See demo for example).
 
-  $ionicFilterBarConfigProvider#filterBar.theme -  Which ionic theme or color options to use. Default `stable`.
+#### $ionicFilterBarConfigProvider.theme
+
+  The ionic theme or color options to use. Default `stable`.
 
   @param {string} value Ionic color option.
 
@@ -60,29 +62,36 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
   @returns {string} value
 
 
-  $ionicFilterBarConfigProvider#filterBar.clear - filterBar Clear button icon used to clear filter input
+#### $ionicFilterBarConfigProvider.clear
+
+  filterBar Clear button icon used to clear filter input
 
   @param {string} value Android defaults to `ion-android-close` and iOS defaults to `ion-ios-close`.
 
   @returns {string}
 
 
-  $ionicFilterBarConfigProvider#filterBar.search -  filterBar Search placeholder icon shown inside input only
-  for iOS
+#### $ionicFilterBarConfigProvider.search
+
+  filterBar Search placeholder icon shown inside input only for iOS
 
   @param {string} value iOS defaults to `ion-ios-search-strong`.  Android doesn't show placeholder icons
 
   @returns {string}
 
 
-  $ionicFilterBarConfigProvider#filterBar.backdrop - filterBar backdrop which is shown when filter text is empty
+#### $ionicFilterBarConfigProvider.backdrop
+
+  filterBar backdrop which is shown when filter text is empty
 
   @param {boolean} value Android defaults to `false` and iOS defaults to `true`.
 
   @returns {boolean}
 
 
-  $ionicFilterBarConfigProvider#filterBar.transition - transition used when filterBar is shown over the header bar
+#### $ionicFilterBarConfigProvider.transition
+
+  transition used when filterBar is shown over the header bar
 
   @param {string} value Android defaults to `horizontal` and iOS defaults to `vertical`.
 
