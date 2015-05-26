@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "A filter directive UI for Ionic apps that animates over the header bar",
   "author": "Devin Jett <djett41@gmail.com> (https://github.com/djett41)",
-  "main": "./ionic-filter-bar.js",
+  "main": "./dist/ionic-filter-bar.js",
   "engines": {
     "node": "*"
   },
