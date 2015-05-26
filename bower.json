@@ -16,7 +16,6 @@
     "js",
     "test",
     ".gitignore",
-    "bower.json",
     "gulpfile.js",
     "karma.conf.js",
     "LICENSE",
