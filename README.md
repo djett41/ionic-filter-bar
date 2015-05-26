@@ -30,9 +30,9 @@ need to import the ionic scss before including `ionic.filter.bar.scss`
 View The controller/configuration Demo at demo/ for an example of configuring and using the filterBar.  To run the demo
 clone the ionic-filter-bar repo, then navigate to the demo/ directory and run the following
 
-`npm install`
-`bower install`
-`gulp`
+    npm install
+    bower install
+    gulp
 
 ## Configuration
 
