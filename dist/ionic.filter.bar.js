@@ -88,12 +88,14 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
             // When clear button is clicked, clear filterText, hide clear button, show backdrop, and focus the input
             var clearClick = function () {
-              $scope.filterText = '';
-              hideClearButton();
-              ionic.requestAnimationFrame(function () {
-                $scope.showBackdrop();
-                $scope.scrollItemsTop();
-                $scope.focusInput();
+              $timeout(function () {
+                $scope.filterText = '';
+                hideClearButton();
+                ionic.requestAnimationFrame(function () {
+                  $scope.showBackdrop();
+                  $scope.scrollItemsTop();
+                  $scope.focusInput();
+                });
               });
             };
 
@@ -549,8 +551,10 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               filteredItems = scope.filter(scope.items, filterExp);
             }
 
-            scope.update(filteredItems);
-            scope.scrollItemsTop();
+            $timeout(function() {
+              scope.update(filteredItems);
+              scope.scrollItemsTop();
+            });
           };
 
           // registerBackButtonAction returns a callback to deregister the action

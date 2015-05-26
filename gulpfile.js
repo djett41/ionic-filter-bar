@@ -16,9 +16,8 @@ var paths = {
   dist: './dist'
 };
 
-gulp.task('default', ['build']);
-gulp.task('build', ['sass']);
-gulp.task('dist', ['sass', 'scripts']);
+gulp.task('default', ['karma']);
+gulp.task('dist', ['scripts']);
 
 gulp.task('scripts', function() {
   return gulp.src([
@@ -36,19 +35,16 @@ gulp.task('scripts', function() {
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.filter.bar.scss')
-    .pipe(gulp.dest(paths.dist))
     /*
       Since this is a plugin, we dont want to include ionic scss in dist.  Don't think there is a way to compile scss
       using ionic vars/mixins without including it in the compiled file.  For now we need to manually remove ionic css
       after scss is compiled to css
      */
-    /*
     .pipe(sass({ errLogToConsole: true }))
     .pipe(gulp.dest(paths.dist))
     .pipe(minifyCss({ keepSpecialComments: 0 }))
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest(paths.dist))
-    */
     .on('end', done);
 });
 
