@@ -1,6 +1,3 @@
-# ionic-filter-bar
-Filter Bar plugin for the Ionic Framework
-
 Ionic Filter Bar
 ===================
 
@@ -33,9 +30,9 @@ need to import the ionic scss before including `ionic.filter.bar.scss`
 View The controller/configuration Demo at demo/ for an example of configuring and using the filterBar.  To run the demo
 clone the ionic-filter-bar repo, then navigate to the demo/ directory and run the following
 
-    `npm install`
-    `bower install`
-    `gulp`
+`npm install`
+`bower install`
+`gulp`
 
 ## Configuration
 
@@ -44,23 +41,21 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
 
   @name $ionicConfigProvider#filterBar.theme
   @description Which ionic theme or color options to use. Default `stable`.
-
   @param {string} value Ionic color option.
 
   `platform`: Dynamically choose the correct theme depending on the platform the app is running from. If the
   platform is `ios`, it will default to `stable`.  If the platform is `android`, it will default to `light`.
   If the platform is not `ios` or `android`, it will default to `stable`.
 
-  `light`: Style the filterBar with the light theme
-  `stable`: Style the filterBar with the stable theme
-  `positive`: Style the filterBar with the positive theme
-  `calm`: Style the filterBar with the calm theme
-  `balanced`: Style the filterBar with the balanced theme
-  `energized`: Style the filterBar with the energized theme
-  `assertive`: Style the filterBar with the assertive theme
-  `royal`: Style the filterBar with the royal theme
-  `dark`: Style the filterBar with the dark theme
-
+  - `light`: Style the filterBar with the light theme
+  - `stable`: Style the filterBar with the stable theme
+  - `positive`: Style the filterBar with the positive theme
+  - `calm`: Style the filterBar with the calm theme
+  - `balanced`: Style the filterBar with the balanced theme
+  - `energized`: Style the filterBar with the energized theme
+  - `assertive`: Style the filterBar with the assertive theme
+  - `royal`: Style the filterBar with the royal theme
+  - `dark`: Style the filterBar with the dark theme
   @returns {string} value
 
 
