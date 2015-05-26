@@ -34,7 +34,7 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
     bower install
     gulp
 
-## Configuration
+## Configuration / API
 
   You can override the default look and feel by injecting `$ionicFilterBarConfigProvider` into your modules config.
   (See demo for example).
@@ -102,9 +102,7 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
   @returns {string}
 
 
-## API Docs
-
-  $ionicFilterBar#show
+#### $ionicFilterBar.show
 
   Load and return a new filter bar.  A new isolated scope will be created for the filter bar and the new filter bar
   will be appended to the body, covering the header bar.
