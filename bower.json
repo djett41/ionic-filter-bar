@@ -9,7 +9,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/davidchang/ngReact.git"
+    "url": "https://github.com/djett41/ionic-filter-bar.git"
   },
   "dependencies": {},
   "devDependencies": {
