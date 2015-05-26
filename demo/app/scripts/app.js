@@ -12,7 +12,7 @@
 
 angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
 
-  .config(function($httpProvider, $stateProvider, $urlRouterProvider) {
+  .config(function($httpProvider, $stateProvider, $urlRouterProvider, $ionicFilterBarConfigProvider) {
     $stateProvider
       .state('app', {
         url: '/app',
@@ -20,6 +20,16 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
         controller: 'MainController'
       });
     $urlRouterProvider.otherwise('/app');
+
+    //You can override the config such as the following
+    /*
+    $ionicFilterBarConfigProvider.theme('calm');
+    $ionicFilterBarConfigProvider.theme('energized');
+    $ionicFilterBarConfigProvider.clear('ion-close');
+    $ionicFilterBarConfigProvider.search('ion-search');
+    $ionicFilterBarConfigProvider.backdrop(false);
+    $ionicFilterBarConfigProvider.transition('vertical');
+    */
   })
 
   .controller('MainController', function($scope, $timeout, $ionicFilterBar) {
@@ -31,7 +41,6 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
       for (var x = 1; x < 2000; x++) {
         items.push({text: 'This is item number ' + x + ' which is an ' + (x % 2 === 0 ? 'EVEN' : 'ODD') + ' number.'});
       }
-      console.log(items);
       $scope.items = items;
     }
 
@@ -41,7 +50,6 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
       filterBarInstance = $ionicFilterBar.show({
         items: $scope.items,
         update: function (filteredItems) {
-
           $scope.items = filteredItems;
         },
         filterProperties: 'text'

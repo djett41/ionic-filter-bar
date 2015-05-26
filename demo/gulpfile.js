@@ -10,7 +10,6 @@ var express = require('express');
 var path = require('path');
 var open = require('open');
 var stylish = require('jshint-stylish');
-var connectLr = require('connect-livereload');
 var streamqueue = require('streamqueue');
 var runSequence = require('run-sequence');
 var ripple = require('ripple-emulator');
@@ -222,16 +221,7 @@ gulp.task('index', ['jsHint', 'scripts'], function() {
     .on('error', errorHandler);
 });
 
-// start local express server
-gulp.task('serve', function() {
-  express()
-    .use(!build ? connectLr() : function(){})
-    .use(express.static(targetDir))
-    .listen(port);
-  open('http://localhost:' + port + '/');
-});
-
-gulp.task('ionic:lab', plugins.shell.task([
+gulp.task('serve', plugins.shell.task([
   'ionic serve --lab'
 ]));
 

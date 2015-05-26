@@ -17,7 +17,7 @@ var paths = {
 };
 
 gulp.task('default', ['karma']);
-gulp.task('dist', ['scripts']);
+gulp.task('dist', ['karma', 'scripts']);
 
 gulp.task('scripts', function() {
   return gulp.src([
