@@ -11,6 +11,18 @@
     "type": "git",
     "url": "https://github.com/djett41/ionic-filter-bar.git"
   },
+  "ignore": [
+    "demo",
+    "js",
+    "test",
+    ".gitignore",
+    "bower.json",
+    "gulpfile.js",
+    "karma.conf.js",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {},
   "devDependencies": {
     "ionic": "^1.0.0-rc.0",

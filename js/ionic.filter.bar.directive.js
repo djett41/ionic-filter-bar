@@ -87,12 +87,14 @@
 
             // When clear button is clicked, clear filterText, hide clear button, show backdrop, and focus the input
             var clearClick = function () {
-              $scope.filterText = '';
-              hideClearButton();
-              ionic.requestAnimationFrame(function () {
-                $scope.showBackdrop();
-                $scope.scrollItemsTop();
-                $scope.focusInput();
+              $timeout(function () {
+                $scope.filterText = '';
+                hideClearButton();
+                ionic.requestAnimationFrame(function () {
+                  $scope.showBackdrop();
+                  $scope.scrollItemsTop();
+                  $scope.focusInput();
+                });
               });
             };
 

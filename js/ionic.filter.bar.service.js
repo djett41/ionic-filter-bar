@@ -258,8 +258,10 @@
               filteredItems = scope.filter(scope.items, filterExp);
             }
 
-            scope.update(filteredItems);
-            scope.scrollItemsTop();
+            $timeout(function() {
+              scope.update(filteredItems);
+              scope.scrollItemsTop();
+            });
           };
 
           // registerBackButtonAction returns a callback to deregister the action

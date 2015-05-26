@@ -43,18 +43,19 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.element.remove).toHaveBeenCalled();
   }));
 
-  it('filterItems should filter items using default filterExpression and call update', inject(function() {
+  it('filterItems should filter items using default filterExpression and call update', inject(function($timeout) {
     var scope = setup({
       items: items,
       update: function (filteredItems) {}
     });
     spyOn(scope, 'update');
     scope.filterItems('squirrel');
+    $timeout.flush();
     expect(scope.update).toHaveBeenCalled();
     expect(scope.update.calls[0].args[0].length).toEqual(1);
   }));
 
-  it('filterItems should filter items based on filterProperties and call scope.update', inject(function() {
+  it('filterItems should filter items based on filterProperties and call scope.update', inject(function($timeout) {
     var updateSpy = jasmine.createSpy('scope.update');
     var scope = setup({
       items: items,
@@ -63,6 +64,7 @@ describe('Ionic FilterBar Service', function() {
     });
 
     scope.filterItems('squirrel');
+    $timeout.flush();
     expect(updateSpy).toHaveBeenCalled();
     expect(scope.update.calls[0].args[0].length).toEqual(0);
   }));
