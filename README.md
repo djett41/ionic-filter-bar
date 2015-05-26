@@ -3,7 +3,7 @@ Ionic Filter Bar
 
 Filter Bar plugin for the Ionic Framework.  MORE COMPLETE DOCS SOON :-/
 
-[Watch Demo](http://makeagif.com/i/EZ-klS)
+![Screenshot](http://makeagif.com/i/EZ-klS)
 
 ## Install
 
