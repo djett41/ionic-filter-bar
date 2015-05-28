@@ -43,27 +43,34 @@ $z-index-filter-bar: 11;
   }
 }
 
-.filter-bar-wrapper {
-  z-index: $z-index-filter-bar;
-  position: absolute;
-  top: 0;
-  right:0;
+.filter-bar {
+  position: fixed;
   width: 100%;
+  height: $bar-height;
+  z-index: $z-index-bar-above;
 
-  .item-input-inset {
-    .icon.placeholder-icon:before {
-      padding-top: 3px;
-      font-size: 16px;
-    }
-    .item-input-wrapper {
-      background: $light;
-      height: 28px;
-      .filter-bar-clear {
-        padding: 0 2px 0 0;
-        &:before {
-          color: #aaa;
-          font-size: 18px;
-          padding-top: 1px;
+  .filter-bar-wrapper {
+    z-index: $z-index-filter-bar;
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 100%;
+
+    .item-input-inset {
+      .icon.placeholder-icon:before {
+        padding-top: 3px;
+        font-size: 16px;
+      }
+      .item-input-wrapper {
+        background: $light;
+        height: 28px;
+        .filter-bar-clear {
+          padding: 0 2px 0 0;
+          &:before {
+            color: #aaa;
+            font-size: 18px;
+            padding-top: 1px;
+          }
         }
       }
     }
@@ -73,15 +80,6 @@ $z-index-filter-bar: 11;
 //android
 .platform-android {
   .filter-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right:0;
-    width: 100%;
-    height: $bar-height;
-    z-index: $z-index-bar-above;
-
-
     .filter-bar-light  {
       @include filter-bar-style($bar-light-bg, $bar-light-active-border, $bar-light-text);
     }

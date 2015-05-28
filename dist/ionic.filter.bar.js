@@ -514,7 +514,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           scope.hideBackdrop = function () {
             if (backdropEl.length && backdropShown) {
               backdropShown = false;
-              backdropEl.removeClass('active');
+              backdropEl.removeClass('active').css('display', 'none');
             }
           };
 
@@ -522,7 +522,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           scope.showBackdrop = function () {
             if (backdropEl.length && !backdropShown) {
               backdropShown = true;
-              backdropEl.addClass('active');
+              backdropEl.css('display', 'block').addClass('active');
             }
           };
 
