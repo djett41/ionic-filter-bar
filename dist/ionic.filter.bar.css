@@ -12,33 +12,30 @@
     z-index: 10;
     opacity: 1; }
 
-.filter-bar-wrapper {
+.filter-bar {
+    position: fixed;
+    width: 100%;
+    height: 44px;
+    z-index: 10; }
+.filter-bar .filter-bar-wrapper {
     z-index: 11;
     position: absolute;
     top: 0;
     right: 0;
     width: 100%; }
-.filter-bar-wrapper .item-input-inset .icon.placeholder-icon:before {
+.filter-bar .filter-bar-wrapper .item-input-inset .icon.placeholder-icon:before {
     padding-top: 3px;
     font-size: 16px; }
-.filter-bar-wrapper .item-input-inset .item-input-wrapper {
+.filter-bar .filter-bar-wrapper .item-input-inset .item-input-wrapper {
     background: #fff;
     height: 28px; }
-.filter-bar-wrapper .item-input-inset .item-input-wrapper .filter-bar-clear {
+.filter-bar .filter-bar-wrapper .item-input-inset .item-input-wrapper .filter-bar-clear {
     padding: 0 2px 0 0; }
-.filter-bar-wrapper .item-input-inset .item-input-wrapper .filter-bar-clear:before {
+.filter-bar .filter-bar-wrapper .item-input-inset .item-input-wrapper .filter-bar-clear:before {
     color: #aaa;
     font-size: 18px;
     padding-top: 1px; }
 
-.platform-android .filter-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 44px;
-    z-index: 10; }
 .platform-android .filter-bar .filter-bar-light .item-input-wrapper {
     border-bottom: 1px solid #ccc;
     background: white; }
