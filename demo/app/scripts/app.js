@@ -22,9 +22,9 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     $urlRouterProvider.otherwise('/app');
 
     //You can override the config such as the following
+
+    $ionicFilterBarConfigProvider.theme('positive');
     /*
-    $ionicFilterBarConfigProvider.theme('calm');
-    $ionicFilterBarConfigProvider.theme('energized');
     $ionicFilterBarConfigProvider.clear('ion-close');
     $ionicFilterBarConfigProvider.search('ion-search');
     $ionicFilterBarConfigProvider.backdrop(false);
