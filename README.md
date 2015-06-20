@@ -43,15 +43,14 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
 
 #### $ionicFilterBarConfigProvider.theme
 
-  The ionic theme or color options to use. Default `stable`.
+  Allows you to override the ionic theme and color options used to style the filter bar.
 
   @param {string} value Ionic color option.
 
-  `platform`: Dynamically choose the correct theme depending on the platform the app is running from. If the
-  platform is `ios`, it will default to `stable`.  If the platform is `android`, it will default to `light`.
-
-  Keep in mind that the ionic-filter-bar theme, must match the ion-nav-bar theme class.
-  For example, if your ionic-filter-bar theme is `positive`, your ion-nav-bar must also have a `bar-positive` class
+  By default the theme inherits the theme and color options of the ion-nav-bar (defaults to light theme).  For example,
+  if you define a `bar-positive` class on you ion-nav-bar (see demo for example) then the filter bar will automatically
+  have the filter-bar-positive styles.  If you would like to override this behavior and have a different theme for the
+  filter bar, you can override the this by setting the theme to one of the following listed below.
 
   - `light`: Style the filterBar with the light theme
   - `stable`: Style the filterBar with the stable theme
