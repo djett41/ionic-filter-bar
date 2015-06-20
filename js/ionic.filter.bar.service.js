@@ -66,6 +66,21 @@
 (function (angular) {
   'use strict';
 
+  var getNavBarTheme = function ($navBar) {
+    var classList = $navBar && $navBar.classList;
+    if (!classList) {
+      return;
+    }
+    
+    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
+
+    for (var i = 0; i < themes.length; i++) {
+      if (classList.contains('bar-' + themes[i])) {
+        return themes[i];
+      }
+    }
+  };
+
   angular.module('jett.ionic.filter.bar')
     .factory('$ionicFilterBar', [
       '$rootScope',
@@ -81,7 +96,7 @@
         var isShown = false;
 
         var templateConfig = {
-          theme: $ionicFilterBarConfig.theme(),
+          theme: $ionicFilterBarConfig.theme() || getNavBarTheme($ionicBody.get().querySelector('.nav-bar-container')),
           transition: $ionicFilterBarConfig.transition(),
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),

@@ -23,9 +23,8 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
 
     //You can override the config such as the following
 
-    $ionicFilterBarConfigProvider.theme('positive');
     /*
-    $ionicFilterBarConfigProvider.theme('energized');
+    $ionicFilterBarConfigProvider.theme('calm');
     $ionicFilterBarConfigProvider.clear('ion-close');
     $ionicFilterBarConfigProvider.search('ion-search');
     $ionicFilterBarConfigProvider.backdrop(false);

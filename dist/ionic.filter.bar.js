@@ -188,7 +188,6 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       // Default
       // -------------------------
       setPlatformConfig('default', {
-        theme: 'stable',
         clear: 'ion-ios-close',
         search: 'ion-ios-search-strong',
         backdrop: true,
@@ -202,7 +201,6 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       // Android
       // -------------------------
       setPlatformConfig('android', {
-        theme: 'light',
         clear: 'ion-android-close',
         search: false,
         backdrop: false,
@@ -359,6 +357,21 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 (function (angular) {
   'use strict';
 
+  var getNavBarTheme = function ($navBar) {
+    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
+    var classList = $navBar && $navBar.classList;
+
+    if (!classList) {
+      return;
+    }
+
+    for (var i = 0; i < themes.length; i++) {
+      if (classList.contains('bar-' + themes[i])) {
+        return themes[i];
+      }
+    }
+  };
+
   angular.module('jett.ionic.filter.bar')
     .factory('$ionicFilterBar', [
       '$rootScope',
@@ -374,7 +387,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
         var isShown = false;
 
         var templateConfig = {
-          theme: $ionicFilterBarConfig.theme(),
+          theme: $ionicFilterBarConfig.theme() || getNavBarTheme($ionicBody.get().querySelector('.nav-bar-container')),
           transition: $ionicFilterBarConfig.transition(),
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),
