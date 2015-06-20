@@ -26,7 +26,7 @@
       // Default
       // -------------------------
       setPlatformConfig('default', {
-        theme: 'positive',
+        theme: 'stable',
         clear: 'ion-ios-close',
         search: 'ion-ios-search-strong',
         backdrop: true,
@@ -40,7 +40,7 @@
       // Android
       // -------------------------
       setPlatformConfig('android', {
-        theme: 'positive',
+        theme: 'light',
         clear: 'ion-android-close',
         search: false,
         backdrop: false,

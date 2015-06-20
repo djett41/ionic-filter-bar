@@ -49,7 +49,9 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
 
   `platform`: Dynamically choose the correct theme depending on the platform the app is running from. If the
   platform is `ios`, it will default to `stable`.  If the platform is `android`, it will default to `light`.
-  If the platform is not `ios` or `android`, it will default to `stable`.
+
+  Keep in mind that the ionic-filter-bar theme, must match the ion-nav-bar theme class.
+  For example, if your ionic-filter-bar theme is `positive`, your ion-nav-bar must also have a `bar-positive` class
 
   - `light`: Style the filterBar with the light theme
   - `stable`: Style the filterBar with the stable theme
