@@ -188,7 +188,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       // Default
       // -------------------------
       setPlatformConfig('default', {
-        theme: 'positive',
+        theme: 'stable',
         clear: 'ion-ios-close',
         search: 'ion-ios-search-strong',
         backdrop: true,
@@ -202,7 +202,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       // Android
       // -------------------------
       setPlatformConfig('android', {
-        theme: 'positive',
+        theme: 'light',
         clear: 'ion-android-close',
         search: false,
         backdrop: false,
