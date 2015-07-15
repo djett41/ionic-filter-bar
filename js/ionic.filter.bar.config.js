@@ -18,7 +18,8 @@
         search: PLATFORM,
         backdrop: PLATFORM,
         transition: PLATFORM,
-        platform: {}
+        platform: {},
+        placeholder: ""
       };
 
       createConfig(configProperties, provider, '');
