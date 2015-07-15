@@ -18,7 +18,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               '<div class="bar bar-header bar-{{::config.theme}} item-input-inset">' +
                 '<button class="filter-bar-cancel button button-icon icon {{::config.back}}"></button>' +
                 '<label class="item-input-wrapper">' +
-                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="Search" />' +
+                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="{{::config.placeholder}}" />' +
                   '<button style="display:none;" class="filter-bar-clear button button-icon icon {{::config.clear}}"></button>' +
                 '</label>' +
               '</div>' +
@@ -29,7 +29,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               '<div class="bar bar-header bar-{{::config.theme}} item-input-inset">' +
                 '<label class="item-input-wrapper">' +
                   '<i class="icon {{::config.search}} placeholder-icon"></i>' +
-                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="Search"/>' +
+                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="{{::config.placeholder}}"/>' +
                   '<button style="display:none;" class="filter-bar-clear button button-icon icon {{::config.clear}}"></button>' +
                 '</label>' +
                 '<button class="filter-bar-cancel button button-clear" ng-bind-html="::cancelText"></button>' +
@@ -180,7 +180,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
         search: PLATFORM,
         backdrop: PLATFORM,
         transition: PLATFORM,
-        platform: {}
+        platform: {},
+        placeholder: ""
       };
 
       createConfig(configProperties, provider, '');
@@ -358,12 +359,12 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
   'use strict';
 
   var getNavBarTheme = function ($navBar) {
-    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
     var classList = $navBar && $navBar.classList;
-
     if (!classList) {
       return;
     }
+    
+    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
 
     for (var i = 0; i < themes.length; i++) {
       if (classList.contains('bar-' + themes[i])) {
