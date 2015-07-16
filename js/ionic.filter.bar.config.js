@@ -19,7 +19,7 @@
         backdrop: PLATFORM,
         transition: PLATFORM,
         platform: {},
-        placeholder: ""
+        placeholder: PLATFORM
       };
 
       createConfig(configProperties, provider, '');
@@ -30,7 +30,8 @@
         clear: 'ion-ios-close',
         search: 'ion-ios-search-strong',
         backdrop: true,
-        transition: 'vertical'
+        transition: 'vertical',
+        placeholder: 'Search'
       });
 
       // iOS (it is the default already)
