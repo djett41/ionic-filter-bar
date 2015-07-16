@@ -181,7 +181,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
         backdrop: PLATFORM,
         transition: PLATFORM,
         platform: {},
-        placeholder: ""
+        placeholder: PLATFORM
       };
 
       createConfig(configProperties, provider, '');
@@ -192,7 +192,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
         clear: 'ion-ios-close',
         search: 'ion-ios-search-strong',
         backdrop: true,
-        transition: 'vertical'
+        transition: 'vertical',
+        placeholder: 'Search'
       });
 
       // iOS (it is the default already)
@@ -393,7 +394,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),
           search: $ionicFilterBarConfig.search(),
-          backdrop: $ionicFilterBarConfig.backdrop()
+          backdrop: $ionicFilterBarConfig.backdrop(),
+          placeholder: $ionicFilterBarConfig.placeholder()
         };
 
         return {
