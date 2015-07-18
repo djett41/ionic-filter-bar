@@ -1,12 +1,12 @@
 Ionic Filter Bar
 ===================
 
+<div><img src="demo/resources/icon.png" align="left" height="72" width="72" ></div>
 A platform specific search filter plugin for the Ionic Framework
 
-[Watch Demo](http://makeagif.com/i/EZ-klS)
+[Watch Demo](http://makeagif.com/i/EZ-klS)  |  Download from [Ionic View](http://view.ionic.io/), appId: ab56e8bd
 
-Download from [Ionic View](http://view.ionic.io/)
-
+===================
 #### NOTE
 On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
 that brings the keyboard up right away does not work.  This will work however on a real device
@@ -15,14 +15,15 @@ or emulator as long as the proper configuration has been setup (see Config secti
 ## Suported Platforms
 
 ### iOS
-![ScreenShot](demo/resources/screenshots/ios1.png)
-![ScreenShot](demo/resources/screenshots/ios2.png)
-![ScreenShot](demo/resources/screenshots/ios3.png)
+<a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
+<a href="url"><img src="demo/resources/screenshots/ios2.png" align="left" height="500" width="281" ></a>
+<a href="url"><img src="demo/resources/screenshots/ios3.png" align="left" height="500" width="281" ></a>
+
 
 ### Android
-![ScreenShot](demo/resources/screenshots/android1.png)
-![ScreenShot](demo/resources/screenshots/android2.png)
-![ScreenShot](demo/resources/screenshots/android3.png)
+<a href="url"><img src="demo/resources/screenshots/android1.png" align="left" height="500" width="281" ></a>
+<a href="url"><img src="demo/resources/screenshots/android2.png" align="left" height="500" width="281" ></a>
+<a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
 
 ## Install
 
