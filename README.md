@@ -16,7 +16,7 @@
 
 ## Demo
 - [View Demo](http://makeagif.com/i/EZ-klS)
-- Download from [Ionic View](http://view.ionic.io/) with appId: ab56e8bd
+- Download from [Ionic View](http://view.ionic.io/) with appId: `ab56e8bd`
 
 > NOTE:  On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
 that brings the keyboard up right away does not work.  This will work however on a real device
