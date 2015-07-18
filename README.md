@@ -1,35 +1,46 @@
 <img src="demo/resources/icon.png" align="left" height="72" width="72" >
-Ionic Filter Bar
-===================
 
-A platform specific search filter plugin for the Ionic Framework
+#Ionic Filter Bar
+***
 
-[Watch Demo](http://makeagif.com/i/EZ-klS)  |  Download from [Ionic View](http://view.ionic.io/), appId: ab56e8bd
-
-===================
-#### NOTE
-On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
-that brings the keyboard up right away does not work.  This will work however on a real device
-or emulator as long as the proper configuration has been setup (see Config section)
+> A platform specific search filter plugin for the Ionic Framework
 
 ## Suported Platforms
 
-### iOS
+#### iOS
 <a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios3.png" align="left" height="500" width="281" ></a>
 
 
-### Android
+#### Android
 <a href="url"><img src="demo/resources/screenshots/android1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
 
-## Install
+
+***
+## Usage
+
+
+### Install
 
 `bower install ionic-filter-bar`
 
-## Usage
+### Demo
+- [View Demo](http://makeagif.com/i/EZ-klS)
+- Download from [Ionic View](http://view.ionic.io/) with appId: ab56e8bd
+
+> NOTE:  On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
+that brings the keyboard up right away does not work.  This will work however on a real device
+or emulator as long as the proper configuration has been setup (see Config section)
+
+View the demo application code at demo/ for an example on how to use the filterBar.  To run the demo
+clone the ionic-filter-bar repo, then navigate to the demo/ directory and run the following
+
+    npm install
+    bower install
+    gulp
 
 ### Config
 
@@ -49,7 +60,6 @@ Keyboard in your module's run section.
 Include `dist/ionic.filter.bar.js` in your index.html or grunt/gulp or usemin configuration.
 Add `jett.ionic.filter.bar` as a module dependency of your app module.
 
-
 ### CSS
 
 Include `dist/ionic.filter.bar.css` in your index.html or grunt/gulp or usemin configuration.
@@ -60,14 +70,7 @@ Include `dist/ionic.filter.bar.css` in your index.html or grunt/gulp or usemin c
 Include `scss/ionic.filter.bar.scss` in your main scss file above any custom filter bar scss styles.  You will also
 need to import the ionic scss before including `ionic.filter.bar.scss`
 
-### Controller and Configuration Usage
-
-View The controller/configuration Demo at demo/ for an example of configuring and using the filterBar.  To run the demo
-clone the ionic-filter-bar repo, then navigate to the demo/ directory and run the following
-
-    npm install
-    bower install
-    gulp
+*** 
 
 ## Configuration / API
 
