@@ -75,20 +75,17 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
 
   @param {string} value Ionic color option.
 
-  By default the theme inherits the theme and color options of the ion-nav-bar (defaults to light theme).  For example,
-  if you define a `bar-positive` class on you ion-nav-bar (see demo for example) then the filter bar will automatically
-  have the filter-bar-positive styles.  If you would like to override this behavior and have a different theme for the
-  filter bar, you can override the this by setting the theme to one of the following listed below.
+  By default the theme inherits the theme and color options of the ion-nav-bar (defaults to light theme).  For example, if you define a `bar-positive` class on you ion-nav-bar (see demo for example) then the filter bar will automatically have the filter-bar-positive styles.  You can override the default behavior by setting the theme to one of the following default Ionic themes listed below.
 
-  - `light`: Style the filterBar with the light theme
-  - `stable`: Style the filterBar with the stable theme
-  - `positive`: Style the filterBar with the positive theme
-  - `calm`: Style the filterBar with the calm theme
-  - `balanced`: Style the filterBar with the balanced theme
-  - `energized`: Style the filterBar with the energized theme
-  - `assertive`: Style the filterBar with the assertive theme
-  - `royal`: Style the filterBar with the royal theme
-  - `dark`: Style the filterBar with the dark theme
+  - `light`
+  - `stable`
+  - `positive`
+  - `calm`
+  - `balanced`
+  - `energized`
+  - `assertive`
+  - `royal`
+  - `dark`
 
   @returns {string} value
 
