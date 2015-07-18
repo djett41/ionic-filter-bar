@@ -1,7 +1,7 @@
+<img src="demo/resources/icon.png" align="left" height="72" width="72" >
 Ionic Filter Bar
 ===================
 
-<div><img src="demo/resources/icon.png" align="left" height="72" width="72" ></div>
 A platform specific search filter plugin for the Ionic Framework
 
 [Watch Demo](http://makeagif.com/i/EZ-klS)  |  Download from [Ionic View](http://view.ionic.io/), appId: ab56e8bd
