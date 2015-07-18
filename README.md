@@ -1,18 +1,13 @@
 <img src="demo/resources/icon.png" align="left" height="85" width="85">
 
 #Ionic Filter Bar
->A platform specific search filter plugin for the Ionic Framework 
+>A platform specific search filter plugin for the Ionic Framework (iOS / Android)
 
 ## Table of Contents
- - [Suported Platforms](#suported-platforms)
  - [Demo](#demo)
  - [Setup](#setup)
  - [Usage](#usage)
  - [Screenshots](#screenshots)
-  
-## Suported Platforms  
--  iOS
--  Android
 
 ## Demo
 - [View Demo](http://makeagif.com/i/EZ-klS)
