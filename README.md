@@ -209,12 +209,15 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
 
 ## Screenshots
 
+<div>
 <a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios3.png" align="left" height="500" width="281" ></a>
+</div>
+<div>
 <a href="url"><img src="demo/resources/screenshots/android1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
-
+</div>
 
 
