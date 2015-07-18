@@ -1,15 +1,47 @@
 Ionic Filter Bar
 ===================
 
-Filter Bar plugin for the Ionic Framework.  MORE COMPLETE DOCS SOON :-/
+A platform specific search filter plugin for the Ionic Framework
 
 [Watch Demo](http://makeagif.com/i/EZ-klS)
+
+Download from [Ionic View](http://view.ionic.io/)
+
+#### NOTE
+On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
+that brings the keyboard up right away does not work.  This will work however on a real device
+or emulator as long as the proper configuration has been setup (see Config section)
+
+## Suported Platforms
+
+### iOS
+![ScreenShot](demo/resources/screenshots/ios1.png)
+![ScreenShot](demo/resources/screenshots/ios2.png)
+![ScreenShot](demo/resources/screenshots/ios3.png)
+
+### Android
+![ScreenShot](demo/resources/screenshots/android1.png)
+![ScreenShot](demo/resources/screenshots/android2.png)
+![ScreenShot](demo/resources/screenshots/android3.png)
 
 ## Install
 
 `bower install ionic-filter-bar`
 
 ## Usage
+
+### Config
+
+In order for Ionic Filter Bar to autofocus for iOS and bring the keyboard up when the filter bar animates in,
+you will need to add the following to your config.xml
+
+    <platform name="ios">
+        <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
+    </platform>
+
+I also recommend using the [ionic-plugin-keyboard](https://github.com/driftyco/ionic-plugin-keyboard) and
+disabling scroll for the keyboard as well.  See the app.js in the Demo for an example on how to configure the Ionic
+Keyboard in your module's run section.
 
 ### JavaScript
 
