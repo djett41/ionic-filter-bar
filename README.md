@@ -1,9 +1,8 @@
 <img src="demo/resources/icon.png" align="left" height="72" width="72" >
 
 #Ionic Filter Bar
-***
 
-> A platform specific search filter plugin for the Ionic Framework
+>A platform specific search filter plugin for the Ionic Framework
 
 ## Suported Platforms
 
@@ -19,7 +18,6 @@
 <a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
 
 
-***
 ## Usage
 
 
@@ -69,8 +67,6 @@ Include `dist/ionic.filter.bar.css` in your index.html or grunt/gulp or usemin c
 
 Include `scss/ionic.filter.bar.scss` in your main scss file above any custom filter bar scss styles.  You will also
 need to import the ionic scss before including `ionic.filter.bar.scss`
-
-*** 
 
 ## Configuration / API
 
