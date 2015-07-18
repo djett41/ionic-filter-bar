@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.devinjett.demo" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>demo</name>
+<widget id="com.devinjett.ionic" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>Ionic Filter Bar</name>
   <description>
-    Add your desription here
+    A platform specific search filter for the Ionic Framework
   </description>
   <author email="djett41@gmail.com">
     Devin Jett
@@ -13,7 +13,12 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="BackupWebStorage" value="none"/>
-  <feature name="StatusBar">
-    <param name="ios-package" value="CDVStatusBar" onload="true"/>
-  </feature>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="3000"/>
+  <platform name="ios">
+    <preference name="TopActivityIndicator" value="white"/>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#fff"/>
+    <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
+  </platform>
 </widget>

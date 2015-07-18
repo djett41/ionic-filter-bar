@@ -43,5 +43,14 @@
   },
   "scripts": {
     "gulp": "./node_modules/.bin/gulp"
-  }
+  },
+  "cordovaPlugins": [
+    "com.ionic.keyboard",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-statusbar"
+  ],
+  "cordovaPlatforms": [
+    "android",
+    "ios"
+  ]
 }

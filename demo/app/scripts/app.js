@@ -32,6 +32,15 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     */
   })
 
+  .run(function ($window, $ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      if ($window.cordova && $window.cordova.plugins.Keyboard) {
+        $window.cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        $window.cordova.plugins.Keyboard.disableScroll(true);
+      }
+    });
+  })
+
   .controller('MainController', function($scope, $timeout, $ionicFilterBar) {
 
     var filterBarInstance;
