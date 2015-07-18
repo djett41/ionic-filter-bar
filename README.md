@@ -6,16 +6,18 @@
 ## Suported Platforms  
 
 #### iOS
+<div style="width:100%;">
 <a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios3.png" align="left" height="500" width="281" ></a>
-
+</div>
 
 #### Android
+<div style="width:100%;">
 <a href="url"><img src="demo/resources/screenshots/android1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
-
+</div>
 
 ## Usage
 
