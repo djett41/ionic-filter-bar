@@ -1,10 +1,9 @@
-<img src="demo/resources/icon.png" align="left" height="72" width="72" >
+<img src="demo/resources/icon.png" align="left" height="85" width="85">
 
 #Ionic Filter Bar
+>A platform specific search filter plugin for the Ionic Framework 
 
->A platform specific search filter plugin for the Ionic Framework
-
-## Suported Platforms
+## Suported Platforms  
 
 #### iOS
 <a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
