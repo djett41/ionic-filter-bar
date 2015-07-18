@@ -3,17 +3,18 @@
 #Ionic Filter Bar
 >A platform specific search filter plugin for the Ionic Framework 
 
+## Table of Contents
+ - [Suported Platforms](#suported-platforms)
+ - [Demo](#demo)
+ - [Setup](#setup)
+ - [Usage](#usage)
+ - [Screenshots](#screenshots)
+  
 ## Suported Platforms  
 -  iOS
 -  Android
 
-## Usage
-
-### Install
-
-`bower install ionic-filter-bar`
-
-### Demo
+## Demo
 - [View Demo](http://makeagif.com/i/EZ-klS)
 - Download from [Ionic View](http://view.ionic.io/) with appId: ab56e8bd
 
@@ -27,8 +28,14 @@ clone the ionic-filter-bar repo, then navigate to the demo/ directory and run th
     npm install
     bower install
     gulp
+    
+## Setup
 
-### Config
+#### Install
+
+`bower install ionic-filter-bar`
+
+#### Cordova Keyboard config (config.xml)
 
 In order for Ionic Filter Bar to autofocus for iOS and bring the keyboard up when the filter bar animates in,
 you will need to add the following to your config.xml
@@ -41,22 +48,28 @@ I also recommend using the [ionic-plugin-keyboard](https://github.com/driftyco/i
 disabling scroll for the keyboard as well.  See the app.js in the Demo for an example on how to configure the Ionic
 Keyboard in your module's run section.
 
-### JavaScript
+#### JS/CSS Imports (index.html)
+Include the following JavaScript/CSS file imports in your index.html.  Remember to import the ionic libraries first!
+The example below assumes your 3rd party bower dependencies are located in the default bower_components folder.
+    
+    <link rel="stylesheet" href="bower_components/ionic-filter-bar/dist/ionic.filter.bar.css">
+    <script src="bower_components/ionic-filter-bar/dist/ionic.filter.bar.js"></script>
 
-Include `dist/ionic.filter.bar.js` in your index.html or grunt/gulp or usemin configuration.
+#### Angular Dependency (app.js)
 Add `jett.ionic.filter.bar` as a module dependency of your app module.
 
-### CSS
+    angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
+      .config(function () {..});
 
-Include `dist/ionic.filter.bar.css` in your index.html or grunt/gulp or usemin configuration.
+#### SASS Import (main.scss)
 
+Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` file as shown below. Import any custom filter bar scss styles below the ionic and ionic.filter.bar scss.
 
-### SASS Overrides
+    @import
+      "path_to_bower_components/ionic/scss/ionic",
+      "path_to_bower_components/ionic-filter-bar/scss/ionic.filter.bar";
 
-Include `scss/ionic.filter.bar.scss` in your main scss file above any custom filter bar scss styles.  You will also
-need to import the ionic scss before including `ionic.filter.bar.scss`
-
-## Configuration / API
+## Usage
 
   You can override the default look and feel by injecting `$ionicFilterBarConfigProvider` into your modules config.
   (See demo for example).
@@ -201,12 +214,9 @@ need to import the ionic scss before including `ionic.filter.bar.scss`
 
 ## Screenshots
 
-### iOS
 <a href="url"><img src="demo/resources/screenshots/ios1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/ios3.png" align="left" height="500" width="281" ></a>
-
-### Android
 <a href="url"><img src="demo/resources/screenshots/android1.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android2.png" align="left" height="500" width="281" ></a>
 <a href="url"><img src="demo/resources/screenshots/android3.png" align="left" height="500" width="281" ></a>
