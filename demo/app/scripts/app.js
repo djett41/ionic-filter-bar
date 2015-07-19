@@ -29,6 +29,7 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     $ionicFilterBarConfigProvider.search('ion-search');
     $ionicFilterBarConfigProvider.backdrop(false);
     $ionicFilterBarConfigProvider.transition('vertical');
+    $ionicFilterBarConfigProvider.placeholder('Filter');
     */
   })
 
@@ -60,8 +61,7 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
         items: $scope.items,
         update: function (filteredItems) {
           $scope.items = filteredItems;
-        },
-        filterProperties: 'text'
+        }
       });
     };
 

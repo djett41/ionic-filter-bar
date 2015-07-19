@@ -37,6 +37,7 @@ describe('Ionic FilterBar Service', function() {
     expect(templateConfig.clear).toBe('ion-ios-close');
     expect(templateConfig.search).toBe('ion-ios-search-strong');
     expect(templateConfig.backdrop).toBe(true);
+    expect(scope.config.placeholder).toBe('Search');
 
     expect(scope.update).toEqual(angular.noop);
     expect(scope.cancel).toEqual(angular.noop);
@@ -139,6 +140,7 @@ describe('Ionic FilterBar Service', function() {
       $ionicFilterBarConfigProvider.search('ion-search');
       $ionicFilterBarConfigProvider.backdrop(false);
       $ionicFilterBarConfigProvider.transition('horizontal');
+      $ionicFilterBarConfigProvider.placeholder('Filter');
     }));
 
     it('show set custom options on scope', inject(function() {
@@ -161,6 +163,7 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.config.clear).toBe('ion-close');
       expect(scope.config.search).toBe('ion-search');
       expect(scope.config.backdrop).toBe(false);
+      expect(scope.config.placeholder).toBe('Filter');
       expect(scope.update).toEqual(update);
       expect(scope.cancel).toEqual(cancel);
       expect(scope.done).toEqual(done);

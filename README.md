@@ -129,6 +129,14 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
 
   @returns {string}
 
+#### $ionicFilterBarConfigProvider.placeholder
+
+  filterBar placeholder text shown inside input.
+
+  @param {string} value defaults to `Search`.
+
+  @returns {string}
+
 
 #### $ionicFilterBar.show
 
