@@ -43,7 +43,8 @@
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),
           search: $ionicFilterBarConfig.search(),
-          backdrop: $ionicFilterBarConfig.backdrop()
+          backdrop: $ionicFilterBarConfig.backdrop(),
+          placeholder: $ionicFilterBarConfig.placeholder()
         };
 
         /**
