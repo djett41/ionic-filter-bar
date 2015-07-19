@@ -69,6 +69,10 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
   You can override the default look and feel by injecting `$ionicFilterBarConfigProvider` into your modules config.
   (See demo for example).
 
+### $ionicFilterBarConfigProvider
+
+A provider you can inject in your module config that provides a way to customize the filter bar template.
+
 #### $ionicFilterBarConfigProvider.theme
 
   Allows you to override the ionic theme and color options used to style the filter bar.
@@ -137,6 +141,10 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
 
   @returns {string}
 
+
+### $ionicFilterBar
+
+A service you can inject in your controller to show the filter bar
 
 #### $ionicFilterBar.show
 
