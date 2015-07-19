@@ -204,6 +204,14 @@ Include the `scss/ionic.filter.bar.scss` file at the top of your `main.scss` fil
 
     Whether to cancel the filterBar when navigating to a new state.  Default value is true.
 
+  - `{string=}` `container`
+
+    The parent container to append the filter bar to.  The default container is the HTML `body`, however this can be
+    customized by passing in the following supported container classes
+
+    - `.modal` (Appends to a modal)
+    - `.menu-content` (Appends to the content section of a side menu.  Useful when the expose-aside-when attr is set.)
+
 ## Screenshots
 
 

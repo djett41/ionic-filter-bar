@@ -47,6 +47,7 @@
             var swipeGesture;
             var backdrop;
             var backdropClick;
+            var filterWatch;
 
             $scope.filterText = '';
 
@@ -135,12 +136,13 @@
               if (backdrop) {
                 $ionicGesture.off(swipeGesture, 'swipe', backdropClick);
               }
+              filterWatch();
             });
 
             // Watch for changes on filterText and call filterItems when filterText has changed.
             // If debounce is enabled, filter items by the specified or default delay.
             // Prefer timeout debounce over ng-model-options so if filterText is cleared, initial items show up right away with no delay
-            $scope.$watch('filterText', function (newFilterText, oldFilterText) {
+            filterWatch = $scope.$watch('filterText', function (newFilterText, oldFilterText) {
               var delay;
 
               if (filterTextTimeout) {
