@@ -27,8 +27,30 @@ describe('Ionic FilterBar Service', function() {
     return scope;
   }
 
-  it('show should add class on showing', inject(function($document) {
+  it('show set default options on scope', inject(function() {
     var scope = setup();
+    var templateConfig = scope.config;
+
+    expect(templateConfig.theme).toBeUndefined();
+    expect(templateConfig.transition).toBe('vertical');
+    expect(templateConfig.back).toBe('ion-ios-arrow-back');
+    expect(templateConfig.clear).toBe('ion-ios-close');
+    expect(templateConfig.search).toBe('ion-ios-search-strong');
+    expect(templateConfig.backdrop).toBe(true);
+
+    expect(scope.update).toEqual(angular.noop);
+    expect(scope.cancel).toEqual(angular.noop);
+    expect(scope.done).toEqual(angular.noop);
+    expect(scope.filterProperties).toBeNull();
+    expect(scope.debounce).toBe(true);
+    expect(scope.delay).toBe(300);
+    expect(scope.cancelText).toBe('Cancel');
+    expect(scope.cancelOnStateChange).toBe(true);
+    expect(scope.container[0].nodeName).toBe('BODY');
+  }));
+
+  it('show should add class on showing', inject(function($document) {
+    setup();
     expect($document[0].body.classList.contains('filter-bar-open')).toBe(true);
   }));
 
@@ -109,5 +131,44 @@ describe('Ionic FilterBar Service', function() {
     $rootScope.$broadcast('$stateChangeSuccess');
     expect(scope.cancelFilterBar).not.toHaveBeenCalled();
   }));
+
+  describe('Custom Options', function() {
+    beforeEach(module('jett.ionic.filter.bar', function ($ionicFilterBarConfigProvider) {
+      $ionicFilterBarConfigProvider.theme('calm');
+      $ionicFilterBarConfigProvider.clear('ion-close');
+      $ionicFilterBarConfigProvider.search('ion-search');
+      $ionicFilterBarConfigProvider.backdrop(false);
+      $ionicFilterBarConfigProvider.transition('horizontal');
+    }));
+
+    it('show set custom options on scope', inject(function() {
+      var update = function () {};
+      var cancel = function () {};
+      var done = function () {};
+
+      var scope = setup({
+        update: update,
+        cancel: cancel,
+        done: done,
+        filterProperties: ['propA', 'propB'],
+        debounce: false,
+        delay: 0,
+        cancelText: 'Done'
+      });
+
+      expect(scope.config.theme).toBe('calm');
+      expect(scope.config.transition).toBe('horizontal');
+      expect(scope.config.clear).toBe('ion-close');
+      expect(scope.config.search).toBe('ion-search');
+      expect(scope.config.backdrop).toBe(false);
+      expect(scope.update).toEqual(update);
+      expect(scope.cancel).toEqual(cancel);
+      expect(scope.done).toEqual(done);
+      expect(scope.filterProperties).toEqual(['propA', 'propB']);
+      expect(scope.debounce).toBe(false);
+      expect(scope.delay).toBe(0);
+      expect(scope.cancelText).toBe('Done');
+    }));
+  });
 
 });

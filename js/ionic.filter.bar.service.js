@@ -1,78 +1,20 @@
+/* global angular,ionic */
 /**
  * @ngdoc service
  * @name $ionicFilterBar
  * @module ionic
- * @description
- * The Filter Bar is an animated bar that allows a user to search or filter an array of items.
- *
- *
- * There are multiple ways to cancel the filter bar, such as tapping or swiping the backdrop, clicking the back or cancel
- * button, or even hitting escape on the keyboard for desktop testing.
- *
- * ![Filter Bar](http://ionicframework.com.s3.amazonaws.com/docs/controllers/actionSheet.gif)
- *
- * @usage
- * To trigger the filterBar, use the $ionicFilterBar service in your angular controllers:
- *
- * ```js
- * angular.module('myApp', ['ionic'])
- * .controller(function($scope, $ionicFilterBar, $timeout, $filter, $ionicScrollDelegate) {
- *
- *  var scrollDelegate = $ionicScrollDelegate.$getByHandle('myScrollDelegate');
- *  var hideFilterBar;
- *
- *   $scope.items = [
- *       {id: 1, displayName: 'First Item', rickets: 344},
- *       {id: 2, displayName: 'Second Item', rickets: 233},
- *       {id: 3, displayName: 'Third Item', rickets: 122},
- *       {id: 4, displayName: 'Fourth Item', rickets: 763},
- *       {id: 5, displayName: 'Fifth Item', rickets: 233},
- *       {id: 6, displayName: 'Sixth Item', rickets: 122},
- *       {id: 7, displayName: 'Seventh Item', rickets: 763}
- *   ];
- *
- *  // Triggered on a button click, or some other target
- *  $scope.show = function() {
- *
- *    // Show the filter bar
- *    hideFilterBar = $ionicFilterBar.show({
- *      items: $scope.items,
- *      update: function(filteredItems) {
- *          // update your list with the filteredItems
- *          $scope.items = filteredItems;
- *      },
- *      cancel: function() {
- *          // add cancel callback code..
- *      },
- *      done: function() {
- *          // add done callback code..
- *      },
- *      scrollDelegate: scrollDelegate,
- *      filter: $filter('myCustomFilter'),
- *      filterProperties: 'displayName',
- *      debounce: true,
- *      delay: 400
- *    });
- *  };
- *
- *  // If you ever need to cancel the filterBar manually, invoke the return function
- *  $scope.cancelFilterBar = function () {
- *    hideFilterBar();
- *  }
- * });
- * ```
- *
+ * @description The Filter Bar is an animated bar that allows a user to search or filter an array of items.
  */
-(function (angular) {
+(function (angular, ionic) {
   'use strict';
 
   var getNavBarTheme = function ($navBar) {
+    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
     var classList = $navBar && $navBar.classList;
+
     if (!classList) {
       return;
     }
-    
-    var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
 
     for (var i = 0; i < themes.length; i++) {
       if (classList.contains('bar-' + themes[i])) {
@@ -83,6 +25,7 @@
 
   angular.module('jett.ionic.filter.bar')
     .factory('$ionicFilterBar', [
+      '$document',
       '$rootScope',
       '$compile',
       '$timeout',
@@ -90,22 +33,17 @@
       '$ionicPlatform',
       '$ionicFilterBarConfig',
       '$ionicConfig',
-      '$ionicBody',
       '$ionicScrollDelegate',
-      function ($rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicBody, $ionicScrollDelegate) {
+      function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicScrollDelegate) {
         var isShown = false;
-
+        var $body = angular.element($document[0].body);
         var templateConfig = {
-          theme: $ionicFilterBarConfig.theme() || getNavBarTheme($ionicBody.get().querySelector('.nav-bar-container')),
+          theme: $ionicFilterBarConfig.theme(),
           transition: $ionicFilterBarConfig.transition(),
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),
           search: $ionicFilterBarConfig.search(),
           backdrop: $ionicFilterBarConfig.backdrop()
-        };
-
-        return {
-          show: filterBar
         };
 
         /**
@@ -114,35 +52,8 @@
          * @description
          * Load and return a new filter bar.
          *
-         * A new isolated scope will be created for the
-         * filter bar and the new filter bar will be appended to the body, covering the header bar.
-         *
-         * @param {object} options The options for the filterBar. Properties:
-         *
-         *  - `[Object]` `items` The array of items to filter.  When the filterBar is cancelled or removed, the original
-         *     list of items will be passed to the update callback.
-         *  - `{function=}` `update` Called after the items are filtered.  The new filtered items will be passed
-         *     to this function which can be used to update the items on your controller's scope.
-         *  - `{function=}` `cancel` Called after the filterBar is removed.  This can happen when the cancel
-         *     button is pressed, the backdrop is tapped or swiped, or the back button is pressed.
-         *  - `{function=}` `done` Called after the filterBar is shown.
-         *  - `{object=}` `scrollDelegate` An $ionicScrollDelegate instance for controlling the items scrollView.
-         *     The default value is $ionicScrollDelegate, however you can pass in a more specific scroll delegate,
-         *     for example $ionicScrollDelegate.$getByHandle('myScrollDelegate').
-         *  - `{object=}` `filter` The filter object used to filter the items array.  The default value is
-         *     $filter('filter'), however you can also pass in a custom filter.
-         *  - `[String]` `filterProperties` A string or string array of object properties that will be used to create a
-         *     filter expression object for filtering items in the array.  All properties will be matched against the
-         *     input filter text.  The default value is null, which will create a string filter expression.  The default
-         *     string expression will be equal to the input filter text and will be matched against all properties
-         *     including nested properties of the arrays items.
-         *  - `{boolean=}` `debounce` Used to debounce input so that the filter function gets called at a specified delay,
-         *     which can help boost performance while filtering.  Default value is false
-         *    `{number=}` `delay` Number of milliseconds to delay filtering.  Default value is 300ms.  The debounce
-         *     option must be set to true for this to take effect.
-         *  - `{string=}` `cancelText` the text for the iOS only 'Cancel' button.  Default value is 'Cancel'.
-         *  - `{boolean=}` `cancelOnStateChange` Whether to cancel the filterBar when navigating
-         *     to a new state.  Default value is true.
+         * A new isolated scope will be created for the filter bar and the new filter bar will be appended to the
+         * body, covering the header bar.
          *
          * @returns {function} `hideFilterBar` A function which, when called, hides & cancels the filter bar.
          */
@@ -159,6 +70,11 @@
           var backdropShown = false;
           var isKeyboardShown = false;
 
+          //if container option is set, determine the container element by querying for the container class
+          if (opts.container) {
+            opts.container = angular.element($body[0].querySelector(opts.container));
+          }
+
           //extend scope defaults with supplied options
           angular.extend(scope, {
             config: templateConfig,
@@ -172,8 +88,14 @@
             debounce: true,
             delay: 300,
             cancelText: 'Cancel',
-            cancelOnStateChange: true
+            cancelOnStateChange: true,
+            container: $body
           }, opts);
+
+          //if no custom theme was configured, get theme of containers bar-header
+          if (!scope.config.theme) {
+            scope.config.theme = getNavBarTheme(scope.container[0].querySelector('.bar.bar-header'));
+          }
 
           // Compile the template
           var element = scope.element = $compile('<ion-filter-bar class="filter-bar"></ion-filter-bar>')(scope);
@@ -188,10 +110,7 @@
           var canScroll = !!scrollView;
 
           //get the scroll container if scrolling is available
-          var $scrollContainer;
-          if (canScroll) {
-            $scrollContainer = angular.element(scrollView.__container);
-          }
+          var $scrollContainer = canScroll ? angular.element(scrollView.__container) : null;
 
           var stateChangeListenDone = scope.cancelOnStateChange ?
             $rootScope.$on('$stateChangeSuccess', function() { scope.cancelFilterBar(); }) :
@@ -314,14 +233,14 @@
             $timeout(function () {
               // wait to remove this due to a 300ms delay native
               // click which would trigging whatever was underneath this
-              $ionicBody.removeClass('filter-bar-open');
+              scope.container.removeClass('filter-bar-open');
             }, 400);
 
             scope.$deregisterBackButton();
             stateChangeListenDone();
 
             //unbind scroll event
-            if (canScroll) {
+            if ($scrollContainer) {
               $scrollContainer.off('scroll', handleScroll);
             }
           };
@@ -330,7 +249,7 @@
           scope.showFilterBar = function(done) {
             if (scope.removed) return;
 
-            $ionicBody.append(element).addClass('filter-bar-open');
+            scope.container.append(element).addClass('filter-bar-open');
 
             //scroll items to the top before starting the animation
             scope.scrollItemsTop();
@@ -347,7 +266,7 @@
               }, 20, false);
             });
 
-            if (canScroll) {
+            if ($scrollContainer) {
               $scrollContainer.on('scroll', handleScroll);
             }
           };
@@ -365,7 +284,11 @@
 
           return scope.cancelFilterBar;
         }
+
+        return {
+          show: filterBar
+        };
       }]);
 
 
-})(angular);
+})(angular, ionic);
