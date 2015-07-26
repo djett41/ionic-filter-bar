@@ -10,15 +10,18 @@
  - [Screenshots](#screenshots)
 
 ## Demo
-- [View Demo](http://makeagif.com/i/EZ-klS)
-- Download from [Ionic View](http://view.ionic.io/) with appId: `ab56e8bd`
 
-> NOTE:  On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus
-that brings the keyboard up right away does not work.  This will work however on a real device
+- Watch the Demo video below
+
+[![Ionic Filter Bar](http://img.youtube.com/vi/6c3980HQKDs/0.jpg)](http://www.youtube.com/watch?v=6c3980HQKDs)
+
+- Download the Demo app on [Ionic View](http://view.ionic.io/) with appId: `ab56e8bd`
+  > NOTE:  On the Ionic View app, `KeyboardDisplayRequiresUserAction` is not being respected, therefore the autofocus that brings the keyboard up right away does not work.  This will work however on a real device
 or emulator as long as the proper configuration has been setup (see Config section)
 
-View the demo application code at demo/ for an example on how to use the filterBar.  To run the demo
-clone the ionic-filter-bar repo, then navigate to the demo/ directory and run the following
+- Run the demo source code by cloning the ionic-filter-bar repo, navigating to /demo and running the following
+
+Run the following ommands:
 
     npm install
     bower install
