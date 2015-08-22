@@ -381,6 +381,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             scrollDelegate: $ionicScrollDelegate,
             filter: $filter('filter'),
             filterProperties: null,
+            expression: null,
+            comparator: null,
             debounce: true,
             delay: 300,
             cancelText: 'Cancel',
@@ -469,11 +471,14 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           scope.filterItems = function(filterText) {
             var filterExp, filteredItems;
 
-            // pass back original list if filterText is empty.  Otherwise filter by supplied properties, or filterText
+            // pass back original list if filterText is empty.
+            // Otherwise filter by expression, supplied properties, or filterText.
             if (!filterText.length) {
               filteredItems = scope.items;
             } else {
-              if (angular.isArray(scope.filterProperties)) {
+              if (scope.expression) {
+                filterExp = scope.expression;
+              } else if (angular.isArray(scope.filterProperties)) {
                 filterExp = {};
                 angular.forEach(scope.filterProperties, function (property) {
                   filterExp[property] = filterText;
@@ -485,7 +490,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
                 filterExp = filterText;
               }
 
-              filteredItems = scope.filter(scope.items, filterExp);
+              filteredItems = scope.filter(scope.items, filterExp, scope.comparator);
             }
 
             $timeout(function() {

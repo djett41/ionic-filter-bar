@@ -165,7 +165,8 @@ A service you can inject in your controller to show the filter bar
   - `{function=}` `update`
 
     Called after the items are filtered.  The new filtered items will be passed to this function which can be used
-    to update the items on your controller's scope.
+    to update the items on your controller's scope.  The text string that was searched on will be passed as the 
+    second argument.
 
 
   - `{function=}` `cancel`
@@ -191,13 +192,31 @@ A service you can inject in your controller to show the filter bar
     The filter object used to filter the items array.  The default value is $filter('filter'), however you can also
     pass in a custom filter.
 
+  - `{string,object,function=}` `expression`
 
+    The predicate to be used for selecting items from the `items` array.  This is the same as the angular filter 
+    `expression` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  Default value is `null`.
+    NOTE: This property will take precedence over `filterProperties`.  Only one can be defined.
+
+  - `{function,true,false,undefined=}` `comparator`
+
+    Determines if the expected value (from the filter expression) and actual value (from the object in the array) 
+    should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  
+    Default value is `undefined`.
+    
   - `[String]` `filterProperties`
 
-    A string or string array of object properties that will be used to create a filter expression object for
-    filtering items in the array.  All properties will be matched against the input filter text.  The default value
-    is null, which will create a string filter expression.  The default string expression will be equal to the input
-    filter text and will be matched against all properties including nested properties of the arrays items.
+    A string or string array of object properties that will be used to create a filterExpression object for
+    filtering items in the array.  All properties will be matched against the input filter text.  For example, given 
+    the following object in an array of items , and assume the user searches for "fish"
+    
+        {name: 'fish', description: 'fish', color: 'blue'}
+        
+        filterProperties: ['name', 'description'] ... The object will be matched and passed to the array in `update`
+        filterProperties: ['name', 'color']       ... The object will NOT be matched or passed to the array in `update`
+    
+    NOTE: If `expression` is defined, `filterProperties` will have no effect.  Only one can be defined.  Default
+    value is null.
 
 
   - `{boolean=}` `debounce`
