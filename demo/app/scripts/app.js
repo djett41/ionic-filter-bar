@@ -59,8 +59,11 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     $scope.showFilterBar = function () {
       filterBarInstance = $ionicFilterBar.show({
         items: $scope.items,
-        update: function (filteredItems) {
+        update: function (filteredItems, filterText) {
           $scope.items = filteredItems;
+          if (filterText) {
+            console.log(filterText);
+          }
         }
       });
     };

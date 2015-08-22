@@ -69,13 +69,14 @@ describe('Ionic FilterBar Service', function() {
   it('filterItems should filter items using default filterExpression and call update', inject(function($timeout) {
     var scope = setup({
       items: items,
-      update: function (filteredItems) {}
+      update: function (filteredItems, filterText) {}
     });
     spyOn(scope, 'update');
     scope.filterItems('squirrel');
     $timeout.flush();
     expect(scope.update).toHaveBeenCalled();
     expect(scope.update.calls[0].args[0].length).toEqual(1);
+    expect(scope.update.calls[0].args[1]).toEqual('squirrel');
   }));
 
   it('filterItems should filter items based on filterProperties and call scope.update', inject(function($timeout) {
@@ -90,6 +91,7 @@ describe('Ionic FilterBar Service', function() {
     $timeout.flush();
     expect(updateSpy).toHaveBeenCalled();
     expect(scope.update.calls[0].args[0].length).toEqual(0);
+    expect(scope.update.calls[0].args[1]).toEqual('squirrel');
   }));
 
   it('show should showFilterBar and call scope.done', inject(function() {
