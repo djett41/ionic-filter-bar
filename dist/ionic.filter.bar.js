@@ -489,7 +489,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             }
 
             $timeout(function() {
-              scope.update(filteredItems);
+              scope.update(filteredItems, filterText);
               scope.scrollItemsTop();
             });
           };

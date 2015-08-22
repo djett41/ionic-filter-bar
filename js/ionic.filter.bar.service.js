@@ -194,7 +194,7 @@
             }
 
             $timeout(function() {
-              scope.update(filteredItems);
+              scope.update(filteredItems, filterText);
               scope.scrollItemsTop();
             });
           };
