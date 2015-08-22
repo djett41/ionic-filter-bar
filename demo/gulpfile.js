@@ -114,7 +114,7 @@ gulp.task('scripts', function() {
 // copy fonts
 gulp.task('fonts', function() {
   return gulp
-    .src(['app/fonts/*.*', 'bower_components/ionic/fonts/*.*'])
+    .src(['app/fonts/*.*', 'bower_components/ionic/release/fonts/*.*'])
 
     .pipe(gulp.dest(path.join(targetDir, 'fonts')))
 
