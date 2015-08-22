@@ -79,6 +79,23 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.update.calls[0].args[1]).toEqual('squirrel');
   }));
 
+  it('filterItems should filter items based on filterExpression and call scope.update', inject(function($timeout) {
+    var updateSpy = jasmine.createSpy('scope.update');
+    var scope = setup({
+      items: items,
+      expression: function (value, index, array) {
+        return value.name.length >= 8;
+      },
+      update: updateSpy
+    });
+
+    scope.filterItems('sauce');
+    $timeout.flush();
+    expect(updateSpy).toHaveBeenCalled();
+    expect(scope.update.calls[0].args[0].length).toEqual(2);
+    expect(scope.update.calls[0].args[1]).toEqual('sauce');
+  }));
+
   it('filterItems should filter items based on filterProperties and call scope.update', inject(function($timeout) {
     var updateSpy = jasmine.createSpy('scope.update');
     var scope = setup({
