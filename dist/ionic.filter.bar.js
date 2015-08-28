@@ -477,7 +477,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               filteredItems = scope.items;
             } else {
               if (scope.expression) {
-                filterExp = scope.expression;
+                filterExp = angular.bind(this, scope.expression, filterText);
               } else if (angular.isArray(scope.filterProperties)) {
                 filterExp = {};
                 angular.forEach(scope.filterProperties, function (property) {
