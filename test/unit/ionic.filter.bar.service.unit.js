@@ -5,7 +5,7 @@ describe('Ionic FilterBar Service', function() {
     {id: 2, name: 'fries', description: 'gotta love fries'},
     {id: 3, name: 'squirrel sauce', description: 'yummm'},
     {id: 4, name: 'honey dew melon', description: 'tasty fruit'},
-    {id: 5, name: 'people', description: 'wierd..'}
+    {id: 5, name: 'people', description: 'wierd sauce..'}
   ];
 
   beforeEach(module('ionic', 'jett.ionic.filter.bar', function($provide) {
@@ -83,8 +83,8 @@ describe('Ionic FilterBar Service', function() {
     var updateSpy = jasmine.createSpy('scope.update');
     var scope = setup({
       items: items,
-      expression: function (value, index, array) {
-        return value.name.length >= 8;
+      expression: function (filterText, value, index, array) {
+        return value.name.length >= 8 || value.description.indexOf(filterText) !== -1;
       },
       update: updateSpy
     });
@@ -92,7 +92,7 @@ describe('Ionic FilterBar Service', function() {
     scope.filterItems('sauce');
     $timeout.flush();
     expect(updateSpy).toHaveBeenCalled();
-    expect(scope.update.calls[0].args[0].length).toEqual(2);
+    expect(scope.update.calls[0].args[0].length).toEqual(3);
     expect(scope.update.calls[0].args[1]).toEqual('sauce');
   }));
 

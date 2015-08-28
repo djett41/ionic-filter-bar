@@ -192,11 +192,16 @@ A service you can inject in your controller to show the filter bar
     The filter object used to filter the items array.  The default value is $filter('filter'), however you can also
     pass in a custom filter.
 
-  - `{string,object,function=}` `expression`
+  - `{function=}` `expression`
 
-    The predicate to be used for selecting items from the `items` array.  This is the same as the angular filter 
-    `expression` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  Default value is `null`.
+    The predicate to be used for selecting items from the `items` array.  This is similar to the angular filter 
+    `expression` function described [here](https://docs.angularjs.org/api/ng/filter/filter), except that the first 
+    argument will be the filterText as shown below.  Default value is `null`.
     NOTE: This property will take precedence over `filterProperties`.  Only one can be defined.
+    
+      function (filterText, value, index, array) {
+        return value.propertyName === filterText || value.anotherPropertyName === filterText;
+      }
 
   - `{function,true,false,undefined=}` `comparator`
 
