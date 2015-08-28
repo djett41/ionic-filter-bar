@@ -92,7 +92,8 @@
             delay: 300,
             cancelText: 'Cancel',
             cancelOnStateChange: true,
-            container: $body
+            container: $body,
+            search: null
           }, opts);
 
           //if no custom theme was configured, get theme of containers bar-header
@@ -177,9 +178,11 @@
             var filterExp, filteredItems;
 
             // pass back original list if filterText is empty.
-            // Otherwise filter by expression, supplied properties, or filterText.
+            // Otherwise perform a search or filter by expression, supplied properties, or filterText.
             if (!filterText.length) {
               filteredItems = scope.items;
+            } else if (scope.search) {
+              filteredItems = scope.search(filterText);
             } else {
               if (scope.expression) {
                 filterExp = angular.bind(this, scope.expression, filterText);
