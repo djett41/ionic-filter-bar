@@ -53,7 +53,7 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.delay).toBe(300);
     expect(scope.cancelText).toBe('Cancel');
     expect(scope.cancelOnStateChange).toBe(true);
-    expect(scope.container[0].nodeName).toBe('BODY');
+    expect(scope.container.nodeName).toBe('BODY');
     expect(scope.favoritesTitle).toBe('Favorite Searches');
     expect(scope.favoritesAddPlaceholder).toBe('Add a search term');
     expect(scope.favoritesEnabled).toBe(true);

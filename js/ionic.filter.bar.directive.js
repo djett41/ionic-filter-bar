@@ -1,13 +1,12 @@
-(function (angular) {
+(function (angular, document) {
   'use strict';
 
   angular.module('jett.ionic.filter.bar')
     .directive('ionFilterBar', [
-      '$document',
       '$timeout',
       '$ionicGesture',
       '$ionicPlatform',
-      function ($document, $timeout, $ionicGesture, $ionicPlatform) {
+      function ($timeout, $ionicGesture, $ionicPlatform) {
         var filterBarTemplate;
 
         //create platform specific filterBar template using filterConfig items
@@ -40,9 +39,10 @@
           restrict: 'E',
           scope: true,
           link: function ($scope, $element) {
-            var clearEl = angular.element($element[0].querySelector('.filter-bar-clear'));
-            var cancelEl = angular.element($element[0].querySelector('.filter-bar-cancel'));
-            var inputEl = $element.find('input');
+            var el = $element[0];
+            var clearEl = el.querySelector('.filter-bar-clear');
+            var cancelEl = el.querySelector('.filter-bar-cancel');
+            var inputEl = el.querySelector('.filter-bar-search');
             var filterTextTimeout;
             var swipeGesture;
             var backdrop;
@@ -54,8 +54,6 @@
             var cancelFilterBar = function () {
               $scope.cancelFilterBar();
             };
-
-            cancelEl.bind('click', cancelFilterBar);
 
             // If backdrop is enabled, create and append it to filter, then add click/swipe listeners to cancel filter
             if ($scope.config.backdrop) {
@@ -85,7 +83,7 @@
 
             // When clear button is clicked, clear filterText, hide clear button, show backdrop, and focus the input
             var clearClick = function () {
-              if (clearEl.hasClass($scope.config.favorite)) {
+              if (clearEl.classList.contains($scope.config.favorite)) {
                 $scope.showModal();
               } else {
                 $timeout(function () {
@@ -99,15 +97,11 @@
               }
             };
 
-            // Since we are wrapping with label, need to bind touchstart rather than click.
-            // Even if we use div instead of label need to bind touchstart.  Click isn't allowing input to regain focus quickly
-            clearEl.bind('touchstart mousedown', clearClick);
-
             // Bind touchstart so we can regain focus of input even while scrolling
-            inputEl.bind('touchstart mousedown', function () {
+            var inputClick = function () {
               $scope.scrollItemsTop();
               $scope.focusInput();
-            });
+            };
 
             // When a non escape key is pressed, show/hide backdrop/clear button based on filterText length
             var keyUp = function(e) {
@@ -120,7 +114,17 @@
               }
             };
 
-            $document.bind('keyup', keyUp);
+            //Event Listeners
+            cancelEl.addEventListener('click', cancelFilterBar);
+            // Since we are wrapping with label, need to bind touchstart rather than click.
+            // Even if we use div instead of label need to bind touchstart.  Click isn't allowing input to regain focus quickly
+            clearEl.addEventListener('touchstart', clearClick);
+            clearEl.addEventListener('mousedown', clearClick);
+
+            inputEl.addEventListener('touchstart', inputClick);
+            inputEl.addEventListener('mousedown', inputClick);
+
+            document.addEventListener('keyup', keyUp);
 
             // Calls the services filterItems function with the filterText to filter items
             var filterItems = function () {
@@ -130,7 +134,7 @@
             // Clean up when scope is destroyed
             $scope.$on('$destroy', function() {
               $element.remove();
-              $document.unbind('keyup', keyUp);
+              document.removeEventListener('keyup', keyUp);
               if (backdrop) {
                 $ionicGesture.off(swipeGesture, 'swipe', backdropClick);
               }
@@ -157,4 +161,4 @@
         };
       }]);
 
-})(angular);
+})(angular, document);

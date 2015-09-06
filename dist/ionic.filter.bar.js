@@ -1,14 +1,13 @@
 angular.module('jett.ionic.filter.bar', ['ionic']);
-(function (angular) {
+(function (angular, document) {
   'use strict';
 
   angular.module('jett.ionic.filter.bar')
     .directive('ionFilterBar', [
-      '$document',
       '$timeout',
       '$ionicGesture',
       '$ionicPlatform',
-      function ($document, $timeout, $ionicGesture, $ionicPlatform) {
+      function ($timeout, $ionicGesture, $ionicPlatform) {
         var filterBarTemplate;
 
         //create platform specific filterBar template using filterConfig items
@@ -41,9 +40,10 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           restrict: 'E',
           scope: true,
           link: function ($scope, $element) {
-            var clearEl = angular.element($element[0].querySelector('.filter-bar-clear'));
-            var cancelEl = angular.element($element[0].querySelector('.filter-bar-cancel'));
-            var inputEl = $element.find('input');
+            var el = $element[0];
+            var clearEl = el.querySelector('.filter-bar-clear');
+            var cancelEl = el.querySelector('.filter-bar-cancel');
+            var inputEl = el.querySelector('.filter-bar-search');
             var filterTextTimeout;
             var swipeGesture;
             var backdrop;
@@ -55,8 +55,6 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             var cancelFilterBar = function () {
               $scope.cancelFilterBar();
             };
-
-            cancelEl.bind('click', cancelFilterBar);
 
             // If backdrop is enabled, create and append it to filter, then add click/swipe listeners to cancel filter
             if ($scope.config.backdrop) {
@@ -86,7 +84,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
             // When clear button is clicked, clear filterText, hide clear button, show backdrop, and focus the input
             var clearClick = function () {
-              if (clearEl.hasClass($scope.config.favorite)) {
+              if (clearEl.classList.contains($scope.config.favorite)) {
                 $scope.showModal();
               } else {
                 $timeout(function () {
@@ -100,15 +98,11 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               }
             };
 
-            // Since we are wrapping with label, need to bind touchstart rather than click.
-            // Even if we use div instead of label need to bind touchstart.  Click isn't allowing input to regain focus quickly
-            clearEl.bind('touchstart mousedown', clearClick);
-
             // Bind touchstart so we can regain focus of input even while scrolling
-            inputEl.bind('touchstart mousedown', function () {
+            var inputClick = function () {
               $scope.scrollItemsTop();
               $scope.focusInput();
-            });
+            };
 
             // When a non escape key is pressed, show/hide backdrop/clear button based on filterText length
             var keyUp = function(e) {
@@ -121,7 +115,17 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
               }
             };
 
-            $document.bind('keyup', keyUp);
+            //Event Listeners
+            cancelEl.addEventListener('click', cancelFilterBar);
+            // Since we are wrapping with label, need to bind touchstart rather than click.
+            // Even if we use div instead of label need to bind touchstart.  Click isn't allowing input to regain focus quickly
+            clearEl.addEventListener('touchstart', clearClick);
+            clearEl.addEventListener('mousedown', clearClick);
+
+            inputEl.addEventListener('touchstart', inputClick);
+            inputEl.addEventListener('mousedown', inputClick);
+
+            document.addEventListener('keyup', keyUp);
 
             // Calls the services filterItems function with the filterText to filter items
             var filterItems = function () {
@@ -131,7 +135,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             // Clean up when scope is destroyed
             $scope.$on('$destroy', function() {
               $element.remove();
-              $document.unbind('keyup', keyUp);
+              document.removeEventListener('keyup', keyUp);
               if (backdrop) {
                 $ionicGesture.off(swipeGesture, 'swipe', backdropClick);
               }
@@ -158,7 +162,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
         };
       }]);
 
-})(angular);
+})(angular, document);
 
 /* global angular */
 /**
@@ -368,7 +372,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       '$ionicScrollDelegate',
       function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicModal, $ionicScrollDelegate) {
         var isShown = false;
-        var $body = angular.element($document[0].body);
+        var $body = $document[0].body;
         var templateConfig = {
           theme: $ionicFilterBarConfig.theme(),
           transition: $ionicFilterBarConfig.transition(),
@@ -411,7 +415,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
           //if container option is set, determine the container element by querying for the container class
           if (opts.container) {
-            opts.container = angular.element($body[0].querySelector(opts.container));
+            opts.container = $body.querySelector(opts.container);
           }
 
           //extend scope defaults with supplied options
@@ -441,7 +445,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
           //if no custom theme was configured, get theme of containers bar-header
           if (!scope.config.theme) {
-            scope.config.theme = getNavBarTheme(scope.container[0].querySelector('.bar.bar-header'));
+            scope.config.theme = getNavBarTheme(scope.container.querySelector('.bar.bar-header'));
           }
 
           // Compile the template
@@ -457,7 +461,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           var canScroll = !!scrollView;
 
           //get the scroll container if scrolling is available
-          var $scrollContainer = canScroll ? angular.element(scrollView.__container) : null;
+          var $scrollContainer = canScroll ? scrollView.__container : null;
 
           var stateChangeListenDone = scope.cancelOnStateChange ?
             $rootScope.$on('$stateChangeSuccess', function () { scope.cancelFilterBar(); }) :
@@ -472,7 +476,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           };
 
           // Blur the input which will hide the keyboard.
-          // Even if we need to bring in ionic.keyboard in the future, blur is preferred for iOS so keyboard animates out.
+          // Even if we need to bring in ionic.keyboard in the future, blur is preferred so keyboard animates out.
           var hideKeyboard = function () {
             if (isKeyboardShown) {
               isKeyboardShown = false;
@@ -592,7 +596,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             $timeout(function () {
               // wait to remove this due to a 300ms delay native
               // click which would trigging whatever was underneath this
-              scope.container.removeClass('filter-bar-open');
+              scope.container.classList.remove('filter-bar-open');
             }, 400);
 
             scope.$deregisterBackButton();
@@ -600,7 +604,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
             //unbind scroll event
             if ($scrollContainer) {
-              $scrollContainer.off('scroll', handleScroll);
+              $scrollContainer.removeEventListener('scroll', handleScroll);
             }
           };
 
@@ -608,7 +612,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           scope.showFilterBar = function(done) {
             if (scope.removed) return;
 
-            scope.container.append(element).addClass('filter-bar-open');
+            scope.container.appendChild(element[0]);
+            scope.container.classList.add('filter-bar-open');
 
             //scroll items to the top before starting the animation
             scope.scrollItemsTop();
@@ -626,7 +631,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             });
 
             if ($scrollContainer) {
-              $scrollContainer.on('scroll', handleScroll);
+              $scrollContainer.addEventListener('scroll', handleScroll);
             }
           };
 

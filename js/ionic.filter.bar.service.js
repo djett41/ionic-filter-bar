@@ -59,7 +59,7 @@
       '$ionicScrollDelegate',
       function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicModal, $ionicScrollDelegate) {
         var isShown = false;
-        var $body = angular.element($document[0].body);
+        var $body = $document[0].body;
         var templateConfig = {
           theme: $ionicFilterBarConfig.theme(),
           transition: $ionicFilterBarConfig.transition(),
@@ -102,7 +102,7 @@
 
           //if container option is set, determine the container element by querying for the container class
           if (opts.container) {
-            opts.container = angular.element($body[0].querySelector(opts.container));
+            opts.container = $body.querySelector(opts.container);
           }
 
           //extend scope defaults with supplied options
@@ -132,7 +132,7 @@
 
           //if no custom theme was configured, get theme of containers bar-header
           if (!scope.config.theme) {
-            scope.config.theme = getNavBarTheme(scope.container[0].querySelector('.bar.bar-header'));
+            scope.config.theme = getNavBarTheme(scope.container.querySelector('.bar.bar-header'));
           }
 
           // Compile the template
@@ -148,7 +148,7 @@
           var canScroll = !!scrollView;
 
           //get the scroll container if scrolling is available
-          var $scrollContainer = canScroll ? angular.element(scrollView.__container) : null;
+          var $scrollContainer = canScroll ? scrollView.__container : null;
 
           var stateChangeListenDone = scope.cancelOnStateChange ?
             $rootScope.$on('$stateChangeSuccess', function () { scope.cancelFilterBar(); }) :
@@ -163,7 +163,7 @@
           };
 
           // Blur the input which will hide the keyboard.
-          // Even if we need to bring in ionic.keyboard in the future, blur is preferred for iOS so keyboard animates out.
+          // Even if we need to bring in ionic.keyboard in the future, blur is preferred so keyboard animates out.
           var hideKeyboard = function () {
             if (isKeyboardShown) {
               isKeyboardShown = false;
@@ -283,7 +283,7 @@
             $timeout(function () {
               // wait to remove this due to a 300ms delay native
               // click which would trigging whatever was underneath this
-              scope.container.removeClass('filter-bar-open');
+              scope.container.classList.remove('filter-bar-open');
             }, 400);
 
             scope.$deregisterBackButton();
@@ -291,7 +291,7 @@
 
             //unbind scroll event
             if ($scrollContainer) {
-              $scrollContainer.off('scroll', handleScroll);
+              $scrollContainer.removeEventListener('scroll', handleScroll);
             }
           };
 
@@ -299,7 +299,8 @@
           scope.showFilterBar = function(done) {
             if (scope.removed) return;
 
-            scope.container.append(element).addClass('filter-bar-open');
+            scope.container.appendChild(element[0]);
+            scope.container.classList.add('filter-bar-open');
 
             //scroll items to the top before starting the animation
             scope.scrollItemsTop();
@@ -317,7 +318,7 @@
             });
 
             if ($scrollContainer) {
-              $scrollContainer.on('scroll', handleScroll);
+              $scrollContainer.addEventListener('scroll', handleScroll);
             }
           };
 
