@@ -37,7 +37,13 @@ describe('Ionic FilterBar Service', function() {
     expect(templateConfig.clear).toBe('ion-ios-close');
     expect(templateConfig.search).toBe('ion-ios-search-strong');
     expect(templateConfig.backdrop).toBe(true);
-    expect(scope.config.placeholder).toBe('Search');
+    expect(templateConfig.placeholder).toBe('Search');
+    expect(templateConfig.favorite).toBe('ion-ios-star');
+    expect(templateConfig.close).toBe('ion-ios-close-empty');
+    expect(templateConfig.done).toBe('ion-ios-checkmark-empty');
+    expect(templateConfig.reorder).toBe('ion-drag');
+    expect(templateConfig.remove).toBe('ion-ios-trash-outline');
+    expect(templateConfig.add).toBe('ion-ios-plus-outline');
 
     expect(scope.update).toEqual(angular.noop);
     expect(scope.cancel).toEqual(angular.noop);
@@ -48,6 +54,10 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.cancelText).toBe('Cancel');
     expect(scope.cancelOnStateChange).toBe(true);
     expect(scope.container[0].nodeName).toBe('BODY');
+    expect(scope.favoritesTitle).toBe('Favorite Searches');
+    expect(scope.favoritesAddPlaceholder).toBe('Add a search term');
+    expect(scope.favoritesEnabled).toBe(true);
+    expect(scope.favoritesKey).toBe('ionic_filter_bar_favorites');
   }));
 
   it('show should add class on showing', inject(function($document) {
@@ -160,6 +170,12 @@ describe('Ionic FilterBar Service', function() {
       $ionicFilterBarConfigProvider.backdrop(false);
       $ionicFilterBarConfigProvider.transition('horizontal');
       $ionicFilterBarConfigProvider.placeholder('Filter');
+      $ionicFilterBarConfigProvider.favorite('ion-star');
+      $ionicFilterBarConfigProvider.close('ion-close');
+      $ionicFilterBarConfigProvider.done('ion-done');
+      $ionicFilterBarConfigProvider.reorder('ion-menu');
+      $ionicFilterBarConfigProvider.remove('ion-trash');
+      $ionicFilterBarConfigProvider.add('ion-plus');
     }));
 
     it('show set custom options on scope', inject(function() {
@@ -174,15 +190,27 @@ describe('Ionic FilterBar Service', function() {
         filterProperties: ['propA', 'propB'],
         debounce: false,
         delay: 0,
-        cancelText: 'Done'
+        cancelText: 'Done',
+        favoritesTitle: 'Saved Searches',
+        favoritesAddPlaceholder: 'Add',
+        favoritesEnabled: false,
+        favoritesKey: 'my_key'
       });
+      var templateConfig = scope.config;
 
-      expect(scope.config.theme).toBe('calm');
-      expect(scope.config.transition).toBe('horizontal');
-      expect(scope.config.clear).toBe('ion-close');
-      expect(scope.config.search).toBe('ion-search');
-      expect(scope.config.backdrop).toBe(false);
-      expect(scope.config.placeholder).toBe('Filter');
+      expect(templateConfig.theme).toBe('calm');
+      expect(templateConfig.transition).toBe('horizontal');
+      expect(templateConfig.clear).toBe('ion-close');
+      expect(templateConfig.search).toBe('ion-search');
+      expect(templateConfig.backdrop).toBe(false);
+      expect(templateConfig.placeholder).toBe('Filter');
+      expect(templateConfig.favorite).toBe('ion-star');
+      expect(templateConfig.close).toBe('ion-close');
+      expect(templateConfig.done).toBe('ion-done');
+      expect(templateConfig.reorder).toBe('ion-menu');
+      expect(templateConfig.remove).toBe('ion-trash');
+      expect(templateConfig.add).toBe('ion-plus');
+
       expect(scope.update).toEqual(update);
       expect(scope.cancel).toEqual(cancel);
       expect(scope.done).toEqual(done);
@@ -190,6 +218,10 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.debounce).toBe(false);
       expect(scope.delay).toBe(0);
       expect(scope.cancelText).toBe('Done');
+      expect(scope.favoritesTitle).toBe('Saved Searches');
+      expect(scope.favoritesAddPlaceholder).toBe('Add');
+      expect(scope.favoritesEnabled).toBe(false);
+      expect(scope.favoritesKey).toBe('my_key');
     }));
   });
 

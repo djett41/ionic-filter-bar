@@ -8,6 +8,28 @@
 (function (angular, ionic) {
   'use strict';
 
+  var filterBarModalTemplate =
+    '<ion-modal-view ng-controller="$ionicFilterBarModalCtrl" class="filter-bar-modal">' +
+    '<ion-header-bar class="bar bar-{{::config.theme}} disable-user-behavior">' +
+      '<button class="button button-icon {{::config.close}}" ng-click="closeModal()"></button>' +
+      '<h1 class="title" ng-bind-html="::favoritesTitle"></h1>' +
+      '<button ng-if="searches.length > 1" class="button button-icon" ng-class="displayData.showReorder ? config.done : config.reorder" ng-click="displayData.showReorder = !displayData.showReorder"></button>' +
+    '</ion-header-bar>' +
+    '<ion-content>' +
+      '<ion-list show-reorder="displayData.showReorder" delegate-handle="searches-list">' +
+        '<ion-item ng-repeat="item in searches" class="item-remove-animate" ng-class="{reordered: item.reordered}" ng-click="itemClicked(item.text, $event)">' +
+          '<span ng-bind-html="item.text"></span>' +
+          '<ion-option-button class="button-assertive icon {{::config.remove}}" ng-click="deleteItem(item)"></ion-option-button>' +
+          '<ion-reorder-button class="{{::config.reorder}}" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>' +
+        '</ion-item>' +
+        '<div class="item item-input">' +
+          '<input type="text" ng-model="newItem.text" placeholder="{{::favoritesAddPlaceholder}}"/>' +
+          '<button class="button button-icon icon {{::config.add}}" ng-click="addItem(newItem)"></button>' +
+        '</div>' +
+      '</ion-list>' +
+    '</ion-content> ' +
+    '</ion-modal-view>';
+
   var getNavBarTheme = function ($navBar) {
     var themes = ['light', 'stable', 'positive', 'calm', 'balanced', 'energized', 'assertive', 'royal', 'dark'];
     var classList = $navBar && $navBar.classList;
@@ -33,8 +55,9 @@
       '$ionicPlatform',
       '$ionicFilterBarConfig',
       '$ionicConfig',
+      '$ionicModal',
       '$ionicScrollDelegate',
-      function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicScrollDelegate) {
+      function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicModal, $ionicScrollDelegate) {
         var isShown = false;
         var $body = angular.element($document[0].body);
         var templateConfig = {
@@ -42,9 +65,15 @@
           transition: $ionicFilterBarConfig.transition(),
           back: $ionicConfig.backButton.icon(),
           clear: $ionicFilterBarConfig.clear(),
+          favorite: $ionicFilterBarConfig.favorite(),
           search: $ionicFilterBarConfig.search(),
           backdrop: $ionicFilterBarConfig.backdrop(),
-          placeholder: $ionicFilterBarConfig.placeholder()
+          placeholder: $ionicFilterBarConfig.placeholder(),
+          close: $ionicFilterBarConfig.close(),
+          done: $ionicFilterBarConfig.done(),
+          reorder: $ionicFilterBarConfig.reorder(),
+          remove: $ionicFilterBarConfig.remove(),
+          add: $ionicFilterBarConfig.add()
         };
 
         /**
@@ -92,8 +121,14 @@
             delay: 300,
             cancelText: 'Cancel',
             cancelOnStateChange: true,
-            container: $body
+            container: $body,
+            favoritesTitle: 'Favorite Searches',
+            favoritesAddPlaceholder: 'Add a search term',
+            favoritesEnabled: true,
+            favoritesKey: 'ionic_filter_bar_favorites'
           }, opts);
+
+          scope.data = {filterText: ''};
 
           //if no custom theme was configured, get theme of containers bar-header
           if (!scope.config.theme) {
@@ -116,7 +151,7 @@
           var $scrollContainer = canScroll ? angular.element(scrollView.__container) : null;
 
           var stateChangeListenDone = scope.cancelOnStateChange ?
-            $rootScope.$on('$stateChangeSuccess', function() { scope.cancelFilterBar(); }) :
+            $rootScope.$on('$stateChangeSuccess', function () { scope.cancelFilterBar(); }) :
             angular.noop;
 
           // Focus the input which will show the keyboard.
@@ -145,7 +180,9 @@
 
           // Scrolls the list of items to the top via the scroll delegate
           scope.scrollItemsTop = function () {
-            canScroll && scope.scrollDelegate.scrollTop && scope.scrollDelegate.scrollTop();
+            if (canScroll && scrollView.__scrollTop > 0 && scope.scrollDelegate.scrollTop) {
+              scope.scrollDelegate.scrollTop();
+            }
           };
 
           // Set isKeyboardShown to force showing keyboard on search focus.
@@ -168,6 +205,13 @@
               backdropShown = true;
               backdropEl.css('display', 'block').addClass('active');
             }
+          };
+
+          scope.showModal = function () {
+            scope.modal = $ionicModal.fromTemplate(filterBarModalTemplate, {
+              scope: scope
+            });
+            scope.modal.show();
           };
 
           // Filters the supplied list of items via the supplied filterText.
@@ -230,7 +274,7 @@
 
                 scope.$destroy();
                 element.remove();
-                scope.cancelFilterBar.$scope = $scrollContainer = scrollView = filterWrapperEl = backdropEl = input = null;
+                scope.cancelFilterBar.$scope = scope.modal = $scrollContainer = scrollView = filterWrapperEl = backdropEl = input = null;
                 isShown = false;
                 (done || angular.noop)();
               }, 350);

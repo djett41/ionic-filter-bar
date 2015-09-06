@@ -275,6 +275,8 @@ gulp.task('watchers', function() {
   gulp.watch('app/icons/**', ['iconfont']);
   gulp.watch('app/images/**', ['images']);
   gulp.watch('app/scripts/**/*.js', ['index']);
+  gulp.watch('app/scripts/**/*.js', ['index']);
+  gulp.watch('../dist/**/*.js', ['vendor']);
   gulp.watch('./vendor.json', ['vendor']);
   gulp.watch('app/templates/**/*.html', ['index']);
   gulp.watch('app/index.html', ['index']);

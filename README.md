@@ -141,7 +141,54 @@ A provider you can inject into your module config that provides a way to customi
 
   @returns {string}
 
+#### $ionicFilterBarConfigProvider.favorite
+  
+  Icon shown in the input filed when `favoritesEnabled` is true and filter text is empty (same spot as clear button)
+  
+  @param {string} Android defaults to `ion-android-star` and iOS defaults to `ion-ios-star`.
 
+  @returns {string}
+    
+#### $ionicFilterBarConfigProvider.close
+  
+  Icon used for button to close the modal
+  
+  @param {string} Android defaults to `ion-android-close` and iOS defaults to `ion-ios-close-empty`.
+
+  @returns {string}
+  
+#### $ionicFilterBarConfigProvider.done
+  
+  Icon used to when a user is done reordering filter bar favorites
+  
+  @param {string} Android defaults to `ion-android-done` and iOS defaults to `ion-ios-checkmark-empty`.
+
+  @returns {string}
+  
+#### $ionicFilterBarConfigProvider.remove
+  
+  Icon for the item options delete button used to delete a favorite
+  
+  @param {string} Android defaults to `ion-android-delete` and iOS defaults to `ion-ios-trash-outline`.
+
+  @returns {string}
+  
+#### $ionicFilterBarConfigProvider.reorder
+  
+  Icon used for the reorder button
+  
+  @param {string} Both platforms default to `ion-drag`.
+
+  @returns {string}
+      
+#### $ionicFilterBarConfigProvider.add
+  
+  Icon used for the add button
+  
+  @param {string} Both platforms default to `ion-ios-plus-outline`.
+
+  @returns {string}      
+    
 ### $ionicFilterBar
 
 A service you can inject in your controller to show the filter bar
@@ -223,7 +270,6 @@ A service you can inject in your controller to show the filter bar
     NOTE: If `expression` is defined, `filterProperties` will have no effect.  Only one can be defined.  Default
     value is null.
 
-
   - `{boolean=}` `debounce`
 
      Used to debounce input so that the filter function gets called at a specified delay, which can help boost
@@ -234,11 +280,9 @@ A service you can inject in your controller to show the filter bar
     Number of milliseconds to delay filtering.  Default value is 300ms.  The debounce option must be set to true
     for this to take effect.
 
-
   - `{string=}` `cancelText`
 
     The text for the iOS only 'Cancel' button.  Default value is 'Cancel'.
-
 
   - `{boolean=}` `cancelOnStateChange`
 
@@ -252,6 +296,24 @@ A service you can inject in your controller to show the filter bar
     - `.modal` (Appends to a modal)
     - `.menu-content` (Appends to the content section of a side menu.  Useful when the expose-aside-when attr is set.)
 
+  - `{string=}` `favoritesEnabled`
+
+    Toggles the favorite searches feature.  If true, a user will be able to see a list of favorite search terms.
+    Default value is 'true'.
+
+  - `{string=}` `favoritesTitle`
+ 
+    The header bar title for the favorites modal.  Default value is 'Favorite Searches'.
+   
+  - `{string=}` `favoritesAddPlaceholder`
+  
+    The placeholder for adding a new search term.  Default value is 'Add a search term'.
+  
+  - `{string=}` `favoritesKey`
+  
+    The key used for saving search terms in local storage.  Default value is 'ionic_filter_bar_favorites'.
+  
+            
 ## Screenshots
 
 

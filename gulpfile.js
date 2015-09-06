@@ -24,7 +24,8 @@ gulp.task('scripts', function() {
     'js/ionic.filter.bar.js',
     'js/ionic.filter.bar.directive.js',
     'js/ionic.filter.bar.config.js',
-    'js/ionic.filter.bar.service.js'
+    'js/ionic.filter.bar.service.js',
+    'js/ionic.filter.bar.modal.js'
   ])
     .pipe(concat('ionic.filter.bar.js'))
     .pipe(gulp.dest(paths.dist))

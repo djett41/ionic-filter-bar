@@ -15,6 +15,12 @@
       var configProperties = {
         theme: PLATFORM,
         clear: PLATFORM,
+        add: PLATFORM,
+        close: PLATFORM,
+        done: PLATFORM,
+        remove: PLATFORM,
+        reorder: PLATFORM,
+        favorite: PLATFORM,
         search: PLATFORM,
         backdrop: PLATFORM,
         transition: PLATFORM,
@@ -28,6 +34,12 @@
       // -------------------------
       setPlatformConfig('default', {
         clear: 'ion-ios-close',
+        add: 'ion-ios-plus-outline',
+        close: 'ion-ios-close-empty',
+        done: 'ion-ios-checkmark-empty',
+        remove: 'ion-ios-trash-outline',
+        reorder: 'ion-drag',
+        favorite: 'ion-ios-star',
         search: 'ion-ios-search-strong',
         backdrop: true,
         transition: 'vertical',
@@ -42,6 +54,10 @@
       // -------------------------
       setPlatformConfig('android', {
         clear: 'ion-android-close',
+        close: 'ion-android-close',
+        done: 'ion-android-done',
+        remove: 'ion-android-delete',
+        favorite: 'ion-android-star',
         search: false,
         backdrop: false,
         transition: 'horizontal'

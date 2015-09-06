@@ -155,3 +155,25 @@ $z-index-filter-bar: 11;
   @include translate3d(0, 0, 0);
   opacity: 1;
 }
+
+.filter-bar-modal {
+  .item {
+    &.item-input {
+      padding-right: $item-padding;
+    }
+  }
+  .list-right-editing {
+    .item.item-input {
+      opacity: .5;
+    }
+  }
+
+  //in my opinion the ios checkmark is a little skimp.. make it bigger
+  .button.button-icon.ion-ios-checkmark-empty:before {
+    font-size: 42px;
+  }
+}
+
+.filter-bar-hide {
+  display: none;
+}
