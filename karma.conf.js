@@ -11,6 +11,7 @@ module.exports = {
     'js/ionic.filter.bar.directive.js',
     'js/ionic.filter.bar.config.js',
     'js/ionic.filter.bar.service.js',
+    'js/ionic.filter.bar.modal.js',
     'test/unit/*.js'
   ],
 

@@ -17,8 +17,8 @@
               '<div class="bar bar-header bar-{{::config.theme}} item-input-inset">' +
                 '<button class="filter-bar-cancel button button-icon icon {{::config.back}}"></button>' +
                 '<label class="item-input-wrapper">' +
-                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="{{::config.placeholder}}" />' +
-                  '<button style="display:none;" class="filter-bar-clear button button-icon icon {{::config.clear}}"></button>' +
+                  '<input type="search" class="filter-bar-search" ng-model="data.filterText" placeholder="{{::config.placeholder}}" />' +
+                  '<button class="filter-bar-clear button button-icon icon" ng-class="getClearButtonClass()"></button>' +
                 '</label>' +
               '</div>' +
             '</div>';
@@ -28,8 +28,8 @@
               '<div class="bar bar-header bar-{{::config.theme}} item-input-inset">' +
                 '<label class="item-input-wrapper">' +
                   '<i class="icon {{::config.search}} placeholder-icon"></i>' +
-                  '<input type="search" class="filter-bar-search" ng-model="filterText" placeholder="{{::config.placeholder}}"/>' +
-                  '<button style="display:none;" class="filter-bar-clear button button-icon icon {{::config.clear}}"></button>' +
+                  '<input type="search" class="filter-bar-search" ng-model="data.filterText" placeholder="{{::config.placeholder}}"/>' +
+                  '<button class="filter-bar-clear button button-icon icon" ng-class="getClearButtonClass()"></button>' +
                 '</label>' +
                 '<button class="filter-bar-cancel button button-clear" ng-bind-html="::cancelText"></button>' +
               '</div>' +
@@ -48,8 +48,6 @@
             var backdrop;
             var backdropClick;
             var filterWatch;
-
-            $scope.filterText = '';
 
             // Action when filter bar is cancelled via backdrop click/swipe or cancel/back buton click.
             // Invokes cancel function defined in filterBar service
@@ -74,29 +72,31 @@
               swipeGesture = $ionicGesture.on('swipe', backdropClick, backdrop);
             }
 
-            // No need to hide/show clear button via ng-show since we can easily do this with jqLite.  inline is fastest
-            var showClearButton = function () {
-              if(clearEl.css('display') === 'none') {
-                clearEl.css('display', 'block');
+            //Sure we could have had 1 function that also checked for favoritesEnabled.. but no need to keep checking a var that wont change
+            if ($scope.favoritesEnabled) {
+              $scope.getClearButtonClass = function () {
+                return $scope.data.filterText.length ? $scope.config.clear : $scope.config.favorite;
               }
-            };
-            var hideClearButton = function () {
-              if(clearEl.css('display') === 'block') {
-                clearEl.css('display', 'none');
+            } else {
+              $scope.getClearButtonClass = function () {
+                return $scope.data.filterText.length ? $scope.config.clear : 'filter-bar-element-hide';
               }
-            };
+            }
 
             // When clear button is clicked, clear filterText, hide clear button, show backdrop, and focus the input
             var clearClick = function () {
-              $timeout(function () {
-                $scope.filterText = '';
-                hideClearButton();
-                ionic.requestAnimationFrame(function () {
-                  $scope.showBackdrop();
-                  $scope.scrollItemsTop();
-                  $scope.focusInput();
+              if (clearEl.hasClass($scope.config.favorite)) {
+                $scope.showModal();
+              } else {
+                $timeout(function () {
+                  $scope.data.filterText = '';
+                  ionic.requestAnimationFrame(function () {
+                    $scope.showBackdrop();
+                    $scope.scrollItemsTop();
+                    $scope.focusInput();
+                  });
                 });
-              });
+              }
             };
 
             // Since we are wrapping with label, need to bind touchstart rather than click.
@@ -113,11 +113,9 @@
             var keyUp = function(e) {
               if (e.which == 27) {
                 cancelFilterBar();
-              } else if ($scope.filterText && $scope.filterText.length) {
-                showClearButton();
+              } else if ($scope.data.filterText && $scope.data.filterText.length) {
                 $scope.hideBackdrop();
               } else {
-                hideClearButton();
                 $scope.showBackdrop();
               }
             };
@@ -126,7 +124,7 @@
 
             // Calls the services filterItems function with the filterText to filter items
             var filterItems = function () {
-              $scope.filterItems($scope.filterText);
+              $scope.filterItems($scope.data.filterText);
             };
 
             // Clean up when scope is destroyed
@@ -142,7 +140,7 @@
             // Watch for changes on filterText and call filterItems when filterText has changed.
             // If debounce is enabled, filter items by the specified or default delay.
             // Prefer timeout debounce over ng-model-options so if filterText is cleared, initial items show up right away with no delay
-            filterWatch = $scope.$watch('filterText', function (newFilterText, oldFilterText) {
+            filterWatch = $scope.$watch('data.filterText', function (newFilterText, oldFilterText) {
               var delay;
 
               if (filterTextTimeout) {
