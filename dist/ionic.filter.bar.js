@@ -437,7 +437,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             container: $body,
             favoritesTitle: 'Favorite Searches',
             favoritesAddPlaceholder: 'Add a search term',
-            favoritesEnabled: true,
+            favoritesEnabled: false,
             favoritesKey: 'ionic_filter_bar_favorites'
           }, opts);
 

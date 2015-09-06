@@ -56,7 +56,7 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.container.nodeName).toBe('BODY');
     expect(scope.favoritesTitle).toBe('Favorite Searches');
     expect(scope.favoritesAddPlaceholder).toBe('Add a search term');
-    expect(scope.favoritesEnabled).toBe(true);
+    expect(scope.favoritesEnabled).toBe(false);
     expect(scope.favoritesKey).toBe('ionic_filter_bar_favorites');
   }));
 
@@ -193,7 +193,7 @@ describe('Ionic FilterBar Service', function() {
         cancelText: 'Done',
         favoritesTitle: 'Saved Searches',
         favoritesAddPlaceholder: 'Add',
-        favoritesEnabled: false,
+        favoritesEnabled: true,
         favoritesKey: 'my_key'
       });
       var templateConfig = scope.config;
@@ -220,7 +220,7 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.cancelText).toBe('Done');
       expect(scope.favoritesTitle).toBe('Saved Searches');
       expect(scope.favoritesAddPlaceholder).toBe('Add');
-      expect(scope.favoritesEnabled).toBe(false);
+      expect(scope.favoritesEnabled).toBe(true);
       expect(scope.favoritesKey).toBe('my_key');
     }));
   });

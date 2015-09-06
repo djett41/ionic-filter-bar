@@ -296,10 +296,12 @@ A service you can inject in your controller to show the filter bar
     - `.modal` (Appends to a modal)
     - `.menu-content` (Appends to the content section of a side menu.  Useful when the expose-aside-when attr is set.)
 
+##### NOTE: The favorites feature is not stable.  There is a bug with the keyboard/input focus that needs to be resolved
+
   - `{string=}` `favoritesEnabled`
 
     Toggles the favorite searches feature.  If true, a user will be able to see a list of favorite search terms.
-    Default value is 'true'.
+    Default value is 'false'.
 
   - `{string=}` `favoritesTitle`
  
