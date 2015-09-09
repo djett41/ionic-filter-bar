@@ -60,7 +60,7 @@
             cancelEl.bind('click', cancelFilterBar);
 
             // If backdrop is enabled, create and append it to filter, then add click/swipe listeners to cancel filter
-            if ($scope.config.backdrop) {
+            if ($scope.config.backdrop && $scope.focusOnShow) {
               backdrop = angular.element('<div class="filter-bar-backdrop"></div>');
               $element.append(backdrop);
 

@@ -48,6 +48,7 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.cancelText).toBe('Cancel');
     expect(scope.cancelOnStateChange).toBe(true);
     expect(scope.container[0].nodeName).toBe('BODY');
+    expect(scope.focusOnShow).toBe(true);
   }));
 
   it('show should add class on showing', inject(function($document) {
@@ -174,7 +175,8 @@ describe('Ionic FilterBar Service', function() {
         filterProperties: ['propA', 'propB'],
         debounce: false,
         delay: 0,
-        cancelText: 'Done'
+        cancelText: 'Done',
+        focusOnShow: false
       });
 
       expect(scope.config.theme).toBe('calm');
@@ -190,6 +192,7 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.debounce).toBe(false);
       expect(scope.delay).toBe(0);
       expect(scope.cancelText).toBe('Done');
+      expect(scope.focusOnShow).toBe(false);
     }));
   });
 

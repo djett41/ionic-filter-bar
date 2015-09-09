@@ -61,7 +61,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             cancelEl.bind('click', cancelFilterBar);
 
             // If backdrop is enabled, create and append it to filter, then add click/swipe listeners to cancel filter
-            if ($scope.config.backdrop) {
+            if ($scope.config.backdrop && $scope.focusOnShow) {
               backdrop = angular.element('<div class="filter-bar-backdrop"></div>');
               $element.append(backdrop);
 
@@ -387,7 +387,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             delay: 300,
             cancelText: 'Cancel',
             cancelOnStateChange: true,
-            container: $body
+            container: $body,
+            focusOnShow: true,
           }, opts);
 
           //if no custom theme was configured, get theme of containers bar-header
@@ -561,8 +562,10 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
               $timeout(function () {
                 filterWrapperEl.addClass('filter-bar-in');
-                scope.focusInput();
-                scope.showBackdrop();
+                if (scope.focusOnShow) {
+                  scope.focusInput();
+                  scope.showBackdrop();
+                }
                 (done || angular.noop)();
               }, 20, false);
             });
