@@ -371,6 +371,10 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             opts.container = angular.element($body[0].querySelector(opts.container));
           }
 
+          //extend templateConfig with supplied config options
+          angular.extend(templateConfig, opts.config);
+          delete opts.config;
+
           //extend scope defaults with supplied options
           angular.extend(scope, {
             config: templateConfig,

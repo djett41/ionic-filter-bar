@@ -191,6 +191,26 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.delay).toBe(0);
       expect(scope.cancelText).toBe('Done');
     }));
+
+    it('should override provider custom options with supplied on show call', inject(function() {
+      var scope = setup({
+        config: {
+          theme: 'dark',
+          transition: 'vertical',
+          clear: 'ion-close-other',
+          search: 'ion-search-other',
+          backdrop: true,
+          placeholder: 'Other Filter'
+        }
+      });
+
+      expect(scope.config.theme).toBe('dark');
+      expect(scope.config.transition).toBe('vertical');
+      expect(scope.config.clear).toBe('ion-close-other');
+      expect(scope.config.search).toBe('ion-search-other');
+      expect(scope.config.backdrop).toBe(true);
+      expect(scope.config.placeholder).toBe('Other Filter');
+    }));
   });
 
 });

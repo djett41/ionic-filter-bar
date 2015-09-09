@@ -26,7 +26,7 @@ Run the following ommands:
     npm install
     bower install
     gulp
-    
+
 ## Setup
 
 #### Install
@@ -49,7 +49,7 @@ Keyboard in your module's run section.
 #### JS/CSS Imports (index.html)
 Include the following JavaScript/CSS file imports in your index.html.  Remember to import the ionic libraries first!
 The example below assumes your 3rd party bower dependencies are located in the default bower_components folder.
-    
+
     <link rel="stylesheet" href="bower_components/ionic-filter-bar/dist/ionic.filter.bar.css">
     <script src="bower_components/ionic-filter-bar/dist/ionic.filter.bar.js"></script>
 
@@ -155,7 +155,7 @@ A service you can inject in your controller to show the filter bar
 
   @param {object} options The options for the filterBar. Properties:
 
-         
+
   - `[Object]` `items`
 
     The array of items to filter.  When the filterBar is cancelled or removed, the original list of items will
@@ -165,7 +165,7 @@ A service you can inject in your controller to show the filter bar
   - `{function=}` `update`
 
     Called after the items are filtered.  The new filtered items will be passed to this function which can be used
-    to update the items on your controller's scope.  The text string that was searched on will be passed as the 
+    to update the items on your controller's scope.  The text string that was searched on will be passed as the
     second argument.
 
 
@@ -194,32 +194,32 @@ A service you can inject in your controller to show the filter bar
 
   - `{function=}` `expression`
 
-    The predicate to be used for selecting items from the `items` array.  This is similar to the angular filter 
-    `expression` function described [here](https://docs.angularjs.org/api/ng/filter/filter), except that the first 
+    The predicate to be used for selecting items from the `items` array.  This is similar to the angular filter
+    `expression` function described [here](https://docs.angularjs.org/api/ng/filter/filter), except that the first
     argument will be the filterText as shown below.  Default value is `null`.
     NOTE: This property will take precedence over `filterProperties`.  Only one can be defined.
-    
+
       function (filterText, value, index, array) {
         return value.propertyName === filterText || value.anotherPropertyName === filterText;
       }
 
   - `{function,true,false,undefined=}` `comparator`
 
-    Determines if the expected value (from the filter expression) and actual value (from the object in the array) 
-    should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  
+    Determines if the expected value (from the filter expression) and actual value (from the object in the array)
+    should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).
     Default value is `undefined`.
-    
+
   - `[String]` `filterProperties`
 
     A string or string array of object properties that will be used to create a filterExpression object for
-    filtering items in the array.  All properties will be matched against the input filter text.  For example, given 
+    filtering items in the array.  All properties will be matched against the input filter text.  For example, given
     the following object in an array of items , and assume the user searches for "fish"
-    
+
         {name: 'fish', description: 'fish', color: 'blue'}
-        
+
         filterProperties: ['name', 'description'] ... The object will be matched and passed to the array in `update`
         filterProperties: ['name', 'color']       ... The object will NOT be matched or passed to the array in `update`
-    
+
     NOTE: If `expression` is defined, `filterProperties` will have no effect.  Only one can be defined.  Default
     value is null.
 
@@ -251,6 +251,11 @@ A service you can inject in your controller to show the filter bar
 
     - `.modal` (Appends to a modal)
     - `.menu-content` (Appends to the content section of a side menu.  Useful when the expose-aside-when attr is set.)
+
+  - `{object=}` `config`
+
+    A config object to customize the filter bar template instance.
+
 
 ## Screenshots
 
