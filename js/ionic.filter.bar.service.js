@@ -119,6 +119,7 @@
             comparator: null,
             debounce: true,
             delay: 300,
+            keyboardShowDelay: 0,
             cancelText: 'Cancel',
             cancelOnStateChange: true,
             container: $body,
@@ -188,7 +189,14 @@
           // Set isKeyboardShown to force showing keyboard on search focus.
           scope.focusInput = function () {
             isKeyboardShown = false;
-            showKeyboard();
+            if(scope.keyboardShowDelay > 0){
+              $timeout(function(){
+                showKeyboard();
+              }, scope.keyboardShowDelay);
+            }
+            else{
+              showKeyboard();
+            }
           };
 
           // Hide the filterBar backdrop if in the DOM and not already hidden.

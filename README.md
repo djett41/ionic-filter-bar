@@ -279,6 +279,10 @@ A service you can inject in your controller to show the filter bar
 
     Number of milliseconds to delay filtering.  Default value is 300ms.  The debounce option must be set to true
     for this to take effect.
+    
+  - `{number=}` `keyboardShowDelay`
+	
+    Number of milliseconds to delay keyboard show. Default value is 0ms. The iOs animation(vertical) by default are 350ms and android(horizontal) 300ms, you may use this times for delay. 
 
   - `{string=}` `cancelText`
 

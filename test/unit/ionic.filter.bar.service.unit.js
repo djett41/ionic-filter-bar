@@ -51,6 +51,7 @@ describe('Ionic FilterBar Service', function() {
     expect(scope.filterProperties).toBeNull();
     expect(scope.debounce).toBe(true);
     expect(scope.delay).toBe(300);
+    expect(scope.keyboardShowDelay).toBe(0);
     expect(scope.cancelText).toBe('Cancel');
     expect(scope.cancelOnStateChange).toBe(true);
     expect(scope.container.nodeName).toBe('BODY');
@@ -190,6 +191,7 @@ describe('Ionic FilterBar Service', function() {
         filterProperties: ['propA', 'propB'],
         debounce: false,
         delay: 0,
+        keyboardShowDelay: 300,
         cancelText: 'Done',
         favoritesTitle: 'Saved Searches',
         favoritesAddPlaceholder: 'Add',
@@ -217,6 +219,7 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.filterProperties).toEqual(['propA', 'propB']);
       expect(scope.debounce).toBe(false);
       expect(scope.delay).toBe(0);
+      expect(scope.keyboardShowDelay).toBe(300);
       expect(scope.cancelText).toBe('Done');
       expect(scope.favoritesTitle).toBe('Saved Searches');
       expect(scope.favoritesAddPlaceholder).toBe('Add');
