@@ -536,7 +536,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
             // pass back original list if filterText is empty.
             // Otherwise filter by expression, supplied properties, or filterText.
-            if (!filterText.length) {
+            if (!(filterText.toString().length)) {
               filteredItems = scope.items;
             } else {
               if (scope.expression) {
