@@ -42,7 +42,7 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     });
   })
 
-  .controller('MainController', function($scope, $timeout, $ionicFilterBar) {
+  .controller('MainController', function($scope, $timeout, $q, $ionicFilterBar) {
 
     var filterBarInstance;
 
@@ -59,6 +59,16 @@ angular.module('Demo', ['ionic', 'jett.ionic.filter.bar'])
     $scope.showFilterBar = function () {
       filterBarInstance = $ionicFilterBar.show({
         items: $scope.items,
+        search: function(filterText){
+          var deferred = $q.defer();
+          $timeout(function(){
+            var result = $scope.items.filter(function(item, index){
+              return item.text.indexOf(filterText) != -1;
+            })
+            deferred.resolve(result);
+          }, 500);
+          return deferred.promise;
+        },
         update: function (filteredItems, filterText) {
           $scope.items = filteredItems;
           if (filterText) {

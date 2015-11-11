@@ -365,12 +365,13 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
       '$compile',
       '$timeout',
       '$filter',
+      '$q',
       '$ionicPlatform',
       '$ionicFilterBarConfig',
       '$ionicConfig',
       '$ionicModal',
       '$ionicScrollDelegate',
-      function ($document, $rootScope, $compile, $timeout, $filter, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicModal, $ionicScrollDelegate) {
+      function ($document, $rootScope, $compile, $timeout, $filter, $q, $ionicPlatform, $ionicFilterBarConfig, $ionicConfig, $ionicModal, $ionicScrollDelegate) {
         var isShown = false;
         var $body = $document[0].body;
         var templateConfig = {
@@ -435,6 +436,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             cancelText: 'Cancel',
             cancelOnStateChange: true,
             container: $body,
+            search: null,
             favoritesTitle: 'Favorite Searches',
             favoritesAddPlaceholder: 'Add a search term',
             favoritesEnabled: false,
@@ -534,9 +536,11 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             var filterExp, filteredItems;
 
             // pass back original list if filterText is empty.
-            // Otherwise filter by expression, supplied properties, or filterText.
+            // Otherwise perform a search or filter by expression, supplied properties, or filterText.
             if (!filterText.length) {
               filteredItems = scope.items;
+            } else if (angular.isFunction(scope.search)) {
+              filteredItems = scope.search(filterText);
             } else {
               if (scope.expression) {
                 filterExp = angular.bind(this, scope.expression, filterText);
@@ -554,11 +558,14 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
               filteredItems = scope.filter(scope.items, filterExp, scope.comparator);
             }
-
-            $timeout(function() {
-              scope.update(filteredItems, filterText);
-              scope.scrollItemsTop();
-            });
+            // turn filteredItems into a promise for consistent handling logic
+            $q.when(filteredItems).then(function(items){
+              $timeout(function() {
+                scope.update(items, filterText);
+                scope.scrollItemsTop();
+              });
+            })
+            
           };
 
           // registerBackButtonAction returns a callback to deregister the action
@@ -656,6 +663,9 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
 
 
 })(angular, ionic);
+
+
+
 
 /* global angular */
 (function (angular) {
