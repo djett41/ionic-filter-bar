@@ -11,6 +11,12 @@
 
 ## Demo
 
+- Download my app SportScoop on iOS/Android to see it live!!
+
+[Web Demo](www.sportscoopapp.com)
+[iOS](https://itunes.apple.com/us/app/sportscoop/id1035164619?mt=8)
+[Android](https://play.google.com/store/apps/details?id=com.coseur.sportscoop)
+
 - Watch the Demo video below
 
 [![Ionic Filter Bar](http://img.youtube.com/vi/6c3980HQKDs/0.jpg)](http://www.youtube.com/watch?v=6c3980HQKDs)
