@@ -438,7 +438,8 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             favoritesTitle: 'Favorite Searches',
             favoritesAddPlaceholder: 'Add a search term',
             favoritesEnabled: false,
-            favoritesKey: 'ionic_filter_bar_favorites'
+            favoritesKey: 'ionic_filter_bar_favorites',
+            filterTextChanged: angular.noop
           }, opts);
 
           scope.data = {filterText: ''};
@@ -532,6 +533,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
           // Filtered items will be sent to update
           scope.filterItems = function(filterText) {
             var filterExp, filteredItems;
+            scope.filterTextChanged(filterText);
 
             // pass back original list if filterText is empty.
             // Otherwise filter by expression, supplied properties, or filterText.
