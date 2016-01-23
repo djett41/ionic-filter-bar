@@ -13,7 +13,7 @@
 
 - Download my app SportScoop on iOS/Android to see it live!!
 
-[Web Demo](http://www.sportscoopapp.com) <br>
+[![Web Demo](http://www.sportscoopapp.com/assets/sportscoop_download.png)](http://www.sportscoopapp.com)
 [iOS](https://itunes.apple.com/us/app/sportscoop/id1035164619?mt=8) <br>
 [Android](https://play.google.com/store/apps/details?id=com.coseur.sportscoop)
 
