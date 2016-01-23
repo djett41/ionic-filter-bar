@@ -11,7 +11,7 @@
 
 ## Demo
 
-- Download my sports news app SportScoop on iOS/Android to see it live!! [Web Demo](http://www.sportscoopapp.com) | [iOS](https://itunes.apple.com/us/app/sportscoop/id1035164619?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.coseur.sportscoop)
+- Download my sports news app **SportScoop** on iOS/Android to see it live!! [Web Demo](http://www.sportscoopapp.com) | [iOS](https://itunes.apple.com/us/app/sportscoop/id1035164619?mt=8) | [Android](https://play.google.com/store/apps/details?id=com.coseur.sportscoop)
 
 [![SportScoop](http://www.sportscoopapp.com/assets/sportscoop_download.png)](http://www.sportscoopapp.com)
 
