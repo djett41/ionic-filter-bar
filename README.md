@@ -243,6 +243,21 @@ A service you can inject in your controller to show the filter bar
     The filter object used to filter the items array.  The default value is $filter('filter'), however you can also
     pass in a custom filter.
 
+  - `{function=}` `search`
+
+    A custom search functionthat returns a filteredItems array. Return value of this function could be promise, which 
+    is useful for backend API filtering with the text entered in the filter bar.
+      function (filterText){
+        var deferred = $q.defer();
+          $timeout(function(){
+            // imagine items are return value from you api
+            var result = items.filter(function(item, index){
+              return item.text.indexOf(filterText) != -1;
+            })
+            deferred.resolve(result);
+          }, 500);
+      }
+
   - `{function=}` `expression`
 
     The predicate to be used for selecting items from the `items` array.  This is similar to the angular filter 
