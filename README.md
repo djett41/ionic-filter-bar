@@ -260,6 +260,11 @@ A service you can inject in your controller to show the filter bar
     should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  
     Default value is `undefined`.
     
+  - `{string=}` `searchType`
+
+    A string which sets the HTML5 search input type. Examples include search, text, email, tel, number, date, month, password. Full list available [here](http://ionicframework.com/html5-input-types/).
+    Default value is `search`.
+    
   - `[String]` `filterProperties`
 
     A string or string array of object properties that will be used to create a filterExpression object for
