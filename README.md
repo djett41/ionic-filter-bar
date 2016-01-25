@@ -249,7 +249,7 @@ A service you can inject in your controller to show the filter bar
     `expression` function described [here](https://docs.angularjs.org/api/ng/filter/filter), except that the first 
     argument will be the filterText as shown below.  Default value is `null`.
     NOTE: This property will take precedence over `filterProperties`.  Only one can be defined.
-    
+
       function (filterText, value, index, array) {
         return value.propertyName === filterText || value.anotherPropertyName === filterText;
       }
@@ -257,20 +257,20 @@ A service you can inject in your controller to show the filter bar
   - `{function,true,false,undefined=}` `comparator`
 
     Determines if the expected value (from the filter expression) and actual value (from the object in the array) 
-    should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).  
+    should be considered a match.  This is the same as the angular filter `comparator` argument described [here](https://docs.angularjs.org/api/ng/filter/filter).
     Default value is `undefined`.
-    
+
   - `[String]` `filterProperties`
 
     A string or string array of object properties that will be used to create a filterExpression object for
     filtering items in the array.  All properties will be matched against the input filter text.  For example, given 
     the following object in an array of items , and assume the user searches for "fish"
-    
+
         {name: 'fish', description: 'fish', color: 'blue'}
-        
+
         filterProperties: ['name', 'description'] ... The object will be matched and passed to the array in `update`
         filterProperties: ['name', 'color']       ... The object will NOT be matched or passed to the array in `update`
-    
+
     NOTE: If `expression` is defined, `filterProperties` will have no effect.  Only one can be defined.  Default
     value is null.
 
@@ -300,6 +300,11 @@ A service you can inject in your controller to show the filter bar
     - `.modal` (Appends to a modal)
     - `.menu-content` (Appends to the content section of a side menu.  Useful when the expose-aside-when attr is set.)
 
+  - `{function=}` `filterTextChanged`
+
+    Optional callback to be invoked with the `filterText` when it has changed. Useful if filtering must be achieved
+    server-side.
+
 ##### NOTE: The favorites feature is not stable.  There is a bug with the keyboard/input focus that needs to be resolved
 
   - `{string=}` `favoritesEnabled`
@@ -308,18 +313,18 @@ A service you can inject in your controller to show the filter bar
     Default value is 'false'.
 
   - `{string=}` `favoritesTitle`
- 
+
     The header bar title for the favorites modal.  Default value is 'Favorite Searches'.
-   
+
   - `{string=}` `favoritesAddPlaceholder`
-  
+
     The placeholder for adding a new search term.  Default value is 'Add a search term'.
-  
+
   - `{string=}` `favoritesKey`
-  
+
     The key used for saving search terms in local storage.  Default value is 'ionic_filter_bar_favorites'.
-  
-            
+
+
 ## Screenshots
 
 
