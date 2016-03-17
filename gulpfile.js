@@ -2,7 +2,6 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var bower = require('bower');
 var concat = require('gulp-concat');
-var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
@@ -35,6 +34,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('sass', function(done) {
+  var sass = require('gulp-sass');
   gulp.src('./scss/ionic.filter.bar.scss')
     /*
       Since this is a plugin, we dont want to include ionic scss in dist.  Don't think there is a way to compile scss
