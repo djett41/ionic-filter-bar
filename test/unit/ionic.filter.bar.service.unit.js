@@ -194,7 +194,8 @@ describe('Ionic FilterBar Service', function() {
         favoritesTitle: 'Saved Searches',
         favoritesAddPlaceholder: 'Add',
         favoritesEnabled: true,
-        favoritesKey: 'my_key'
+        favoritesKey: 'my_key',
+        initialFilterText: 'initialFilterText'
       });
       var templateConfig = scope.config;
 
@@ -222,6 +223,7 @@ describe('Ionic FilterBar Service', function() {
       expect(scope.favoritesAddPlaceholder).toBe('Add');
       expect(scope.favoritesEnabled).toBe(true);
       expect(scope.favoritesKey).toBe('my_key');
+      expect(scope.initialFilterText).toBe('initialFilterText');
     }));
   });
 
