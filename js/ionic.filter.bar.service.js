@@ -112,6 +112,7 @@
             update: angular.noop,
             cancel: angular.noop,
             done: angular.noop,
+            clear: angular.noop,
             scrollDelegate: $ionicScrollDelegate,
             filter: $filter('filter'),
             filterProperties: null,
@@ -320,6 +321,13 @@
             if ($scrollContainer) {
               $scrollContainer.addEventListener('scroll', handleScroll);
             }
+          };
+
+          // Called when the filter text is cleared.
+          scope.clearFilterText = function() {
+            scope.clear ?
+            scope.clear() :
+            angular.noop;
           };
 
           // called when the user presses the backdrop, cancel/back button, changes state

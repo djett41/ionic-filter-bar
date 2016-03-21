@@ -88,6 +88,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
                 $scope.showModal();
               } else {
                 $timeout(function () {
+                  $scope.clearFilterText();
                   $scope.data.filterText = '';
                   ionic.requestAnimationFrame(function () {
                     $scope.showBackdrop();
@@ -425,6 +426,7 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             update: angular.noop,
             cancel: angular.noop,
             done: angular.noop,
+            clear: angular.noop,
             scrollDelegate: $ionicScrollDelegate,
             filter: $filter('filter'),
             filterProperties: null,
@@ -633,6 +635,13 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             if ($scrollContainer) {
               $scrollContainer.addEventListener('scroll', handleScroll);
             }
+          };
+
+          // Called when the filter text is cleared.
+          scope.clearFilterText = function() {
+            scope.clear ?
+            scope.clear() :
+            angular.noop;
           };
 
           // called when the user presses the backdrop, cancel/back button, changes state
