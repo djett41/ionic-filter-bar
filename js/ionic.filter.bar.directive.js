@@ -87,6 +87,7 @@
                 $scope.showModal();
               } else {
                 $timeout(function () {
+                  $scope.clearFilterText();
                   $scope.data.filterText = '';
                   ionic.requestAnimationFrame(function () {
                     $scope.showBackdrop();
