@@ -448,6 +448,11 @@ angular.module('jett.ionic.filter.bar', ['ionic']);
             scope.config.theme = getNavBarTheme(scope.container.querySelector('.bar.bar-header'));
           }
 
+          //allow placeholder overwrites
+          if (opts.placeholder && opts.placeholder != '') {
+            scope.config.placeholder = opts.placeholder;
+          }
+          
           // Compile the template
           var element = scope.element = $compile('<ion-filter-bar class="filter-bar"></ion-filter-bar>')(scope);
 
