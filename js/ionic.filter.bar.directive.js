@@ -62,7 +62,12 @@
 
               backdropClick = function(e) {
                 if (e.target == backdrop[0]) {
-                  cancelFilterBar();
+                    if ($scope.backdropClick !== angular.noop) {
+                        $scope.backdropClick($scope.data.filterItems,
+                            $scope.data.filterText);
+                    } else {
+                        cancelFilterBar();
+                    }
                 }
               };
 
@@ -107,15 +112,26 @@
             var keyUp = function(e) {
               if (e.which == 27) {
                 cancelFilterBar();
-              } else if ($scope.data.filterText && $scope.data.filterText.length) {
+              } else if ($scope.data.filterText 
+                      && $scope.data.filterText.length
+                      && $scope.hideBackdropOnTyping) {
                 $scope.hideBackdrop();
               } else {
                 $scope.showBackdrop();
               }
             };
 
+            var cancelElClickEvent = function() {
+                if ($scope.cancelClick !== angular.noop) {
+                    $scope.cancelClick($scope.data.filterItems,
+                            $scope.data.filterText);
+                } else {
+                    cancelFilterBar();
+                }
+            };
+
             //Event Listeners
-            cancelEl.addEventListener('click', cancelFilterBar);
+            cancelEl.addEventListener('click', cancelElClickEvent);
             // Since we are wrapping with label, need to bind touchstart rather than click.
             // Even if we use div instead of label need to bind touchstart.  Click isn't allowing input to regain focus quickly
             clearEl.addEventListener('touchstart', clearClick);
