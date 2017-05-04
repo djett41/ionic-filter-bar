@@ -31,6 +31,29 @@ Run the following ommands:
     bower install
     gulp
     
+## Remote Searching
+The default behaviour supports searching locally with a given list of items. In case you need to implement your own searching which connects to a remote server of retrieving data, you need to disable `hideBackdropOnTyping`. Also depending on your implementation, you might different behaviours for events such as user clicks on cancel button or taps on backdrop. The following example gives you the idea on how this can be implemented.
+
+```javascript
+    var filterBarInstanceTerminator = $ionicFilterBar.show({
+        update: function (filteredItems, filterText) {
+            console.log(filterText);
+        },
+        cancelText: 'Search',
+        backdrop: true,
+        hideBackdropOnTyping: false,
+        cancelClick: function (items, text) {
+            console.log('cancelClick:' + text);
+            filterBarInstanceTerminator();
+        },
+        backdropClick: function (items, text) {
+            console.log('backdropClick:' + text);
+            filterBarInstanceTerminator();
+        }
+    });
+
+```
+
 ## Setup
 
 #### Install
@@ -225,6 +248,36 @@ A service you can inject in your controller to show the filter bar
     Called after the filterBar is removed.  This can happen when the cancel button is pressed, the backdrop is
     tapped or swiped, or the back button is pressed.
 
+  - `{function=}` `cancelClick`
+    Called when user clicks on cancel button. When you use this option, backdrop will not disappear
+    automatically. Instead you have to close it manually by calling the filter bar instance.
+    ```javascript
+        var filterBarInstanceTerminator = $ionicFilterBar.show({
+            update: function (filteredItems, filterText) {
+                console.log(filterText);
+            },
+            cancelText: 'Search',
+            backdrop: true,
+            hideBackdropOnTyping: false,
+            cancelClick: function (items, text) {
+                console.log('cancelClick:' + text);
+                filterBarInstanceTerminator();
+            },
+            backdropClick: function (items, text) {
+                console.log('backdropClick:' + text);
+                filterBarInstanceTerminator();
+            }
+        });
+
+    ```
+
+  - `{function=}` `backdropClick`
+    Called when user taps on backdrop. When you use this option, backdrop will not disappear
+    automatically. Instead you have to close it manually by calling the filter bar instance.
+    You can have a look at the example given for `cancelClick` option
+
+  - `{boolean=}` `hideBackdropOnTyping`
+    The default value is true. When user types into the search box, backdrop is hidden automatically.
 
   - `{function=}` `done`
 

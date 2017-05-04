@@ -1,6 +1,6 @@
 {
   "name": "ionic-filter-bar",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "A filter directive UI for Ionic apps that animates over the header bar",
   "author": "Devin Jett <djett41@gmail.com> (https://github.com/djett41)",
   "main": [
@@ -39,5 +39,8 @@
     "angular"
   ],
   "license": "MIT",
-  "private": false
+  "private": false,
+  "resolutions": {
+    "angular": "1.5.3"
+  }
 }

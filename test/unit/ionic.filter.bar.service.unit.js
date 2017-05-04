@@ -47,6 +47,9 @@ describe('Ionic FilterBar Service', function() {
 
     expect(scope.update).toEqual(angular.noop);
     expect(scope.cancel).toEqual(angular.noop);
+    expect(scope.cancelClick).toEqual(angular.noop);
+    expect(scope.hideBackdropOnTyping).toEqual(true);
+    expect(scope.backdropClick).toEqual(angular.noop);
     expect(scope.done).toEqual(angular.noop);
     expect(scope.filterProperties).toBeNull();
     expect(scope.debounce).toBe(true);
@@ -182,11 +185,16 @@ describe('Ionic FilterBar Service', function() {
       var update = function () {};
       var cancel = function () {};
       var done = function () {};
+      var cancelClick = function() {};
+      var backdropClick = function() {};
 
       var scope = setup({
         update: update,
+        cancelClick: cancelClick,
+        backdropClick: backdropClick,
         cancel: cancel,
         done: done,
+        hideBackdropOnTyping: false,
         filterProperties: ['propA', 'propB'],
         debounce: false,
         delay: 0,
@@ -213,6 +221,9 @@ describe('Ionic FilterBar Service', function() {
 
       expect(scope.update).toEqual(update);
       expect(scope.cancel).toEqual(cancel);
+      expect(scope.cancelClick).toEqual(cancelClick);
+      expect(scope.hideBackdropOnTyping).toEqual(false);
+      expect(scope.backdropClick).toEqual(backdropClick);
       expect(scope.done).toEqual(done);
       expect(scope.filterProperties).toEqual(['propA', 'propB']);
       expect(scope.debounce).toBe(false);
